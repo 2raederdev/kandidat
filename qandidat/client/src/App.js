@@ -7,6 +7,10 @@ import Service from './service/Auth.service'
 /* ---------  PAGE COMPONENTS --------- */
 
 import Index from './components/pages/Index'
+import Dashboard from './components/dashboard/Dashboard'
+import Company from './components/company/Company'
+import Mail from './components/mails/Mails'
+import Agenda from './components/agenda/Agenda'
 
 /* ---------  APPLICATION COMPONENTS --------- */
 
@@ -21,6 +25,7 @@ import Navbar from './components/ui/Navbar'
 
 import Signup from './components/auth/Signup'
 import Login from './components/auth/Login'
+
 
 
 class App extends Component {
@@ -57,6 +62,12 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component={Index} />
+          <Route exact path="/company" component={Company} />
+          <Route exact path="/mail" component={Mail} />
+          <Route exact path="/agenda" component={Agenda} />
+
+
+          <Route exact path="/dashboard" render={() => <Dashboard loggedInUser={this.state.loggedInUser}/>} />
           <Route exact path="/applications" render={() => <ApplicationList loggedInUser={this.state.loggedInUser}/>} />
 
           <Route path="/signup" render={match => <Signup setUser={this.setTheUser} {...match} />} />

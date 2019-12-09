@@ -1,16 +1,16 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
-const Index = () => {
+const Mail = () => {
 
     return (
         <Container>
             <section>
-                <h1>Kandidat</h1>
-                <p>Todas tus candidaturas en un único lugar.</p>
+                <h1>Mails</h1>
+                <p>Comprueba si un email existe</p>
             </section>
         </Container>
     )
 }
 
-export default Index
+export default Mail

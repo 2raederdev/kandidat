@@ -1,7 +1,10 @@
 import React from 'react'
 import Service from '../../service/Application.service'
 
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col  } from 'react-bootstrap'
+
+import StatusRow from '../dashboard/Statuscol'
+
 
 class ApplicationList extends React.Component {
 
@@ -9,11 +12,14 @@ class ApplicationList extends React.Component {
         super(props)
         this._service = new Service()
         this.state = {
-            applications: [],
+            applications: []
         }
     }
 
-    componentDidMount = () => this.updateApplicationsList()
+    componentDidMount = () => 
+    {
+        this.updateApplicationsList()
+    }
 
     updateApplicationsList = () => {
         this._service.getAllApplications()
@@ -30,12 +36,13 @@ class ApplicationList extends React.Component {
                 <Container>
 
                     <h1>Tus candidaturas</h1>
-{/* 
+
                     <Row>
-                        {this.state.applications.map(application => <ApplicationCard key={application._id} {...application} />)}
+                        <Col>
+                            {this.state.applications.map(application => <StatusRow key={application._id} {...application} />)}
+                        </Col>
                     </Row>
-                    Al no haber todavía candidaturas, comento la row (además no tengo todavía el componente ApplicationCard y no sé ni el estilo que tendrá)
-  */}
+ 
                 </Container>
 
             </section>

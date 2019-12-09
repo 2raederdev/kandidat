@@ -16,7 +16,9 @@ class Navigation extends Component {
 
     logoutUser = () => {
         this._service.logout()
-            .then(x => this.props.setUser(false))
+            .then(x => {
+                this.props.setUser(false)
+            })
             .catch(err => console.log(err))
     }
 
@@ -24,32 +26,43 @@ class Navigation extends Component {
 
         const saludo = this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'
 
+        let buttonStyle = {
+            color: "#1C1259",
+            cursor: "pointer"
+        }
+
+
+
         return (
 
             this.props.loggedInUser ?
 
-                <Navbar bg="dark" variant="dark" expand="md">
-                    <Navbar className="logo" as="li"><Link to="/">qandidat</Link></Navbar>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar className="color-nav" variant="dark" expand="md" >
+                    <Navbar /*style={logoStyle}*/ className="logo" as="li"><Link className="pupu" to="/">kandidat</Link></Navbar>
+                    <Navbar.Toggle className="toggle" aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse>
-                        <Nav className="mr-auto">
+                        <Nav className="ml-auto theLinks">
                         <Nav.Link as="li"><Link to="/">Inicio</Link></Nav.Link>
-                            <Nav.Link as="li"><Link to="/applications">Tus candidaturas</Link></Nav.Link>
-                            <Nav.Link as="li" onClick={this.logoutUser}>Logout</Nav.Link>
+                            <Nav.Link as="li"><Link to="/dashboard">Dashboard</Link></Nav.Link>
+                            <Nav.Link as="li"><Link to="/applications">Candidaturas</Link></Nav.Link>
+                            <Nav.Link as="li"><Link to="/company">Empresa</Link></Nav.Link>
+                            <Nav.Link as="li"><Link to="mail">Email</Link></Nav.Link>
+                            <Nav.Link as="li"><Link to="/agenda">Agenda</Link></Nav.Link>
+                            <Nav.Link style={buttonStyle} as="li" onClick={this.logoutUser}>Logout</Nav.Link>
                         </Nav>
-                        <Nav className="ml-auto">
-                            <Navbar.Text>Bienvenid@ {saludo}</Navbar.Text>
-                        </Nav>
+                        {/* <Nav className="ml-auto bienvenido">
+                            <Navbar.Text style={buttonStyle}>Bienvenid@ {saludo}</Navbar.Text>
+                        </Nav> */}
                     </Navbar.Collapse>
                 </Navbar>
 
             :
 
-            <Navbar bg="dark" variant="dark" expand="md">
-                    <Navbar className="logo" as="li"><Link to="/">qandidat</Link></Navbar>
+            <Navbar className="color-nav" variant="dark" expand="md">
+                    <Navbar /*style={logoStyle}*/ className="logo" as="li"><Link className="pupu" to="/">kandidat</Link></Navbar>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse>
-                <Nav className="mr-auto">
+                <Nav className="ml-auto theLinks">
                     <Nav.Link as="li"><Link to="/">Inicio</Link></Nav.Link>
                     <Nav.Link as="li"><Link to="/signup">Registro</Link></Nav.Link>
                     <Nav.Link as="li"><Link to="/login">Login</Link></Nav.Link>

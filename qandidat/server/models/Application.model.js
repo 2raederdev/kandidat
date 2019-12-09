@@ -2,22 +2,17 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const applicationSchema = new Schema({
-    company: {
-        name: String,
-        url: String,
-        activity: String,
-        imgCompanyPath: {
-            type: String,
-            default: "https://res.cloudinary.com/tworaederdev/image/upload/v1575721733/qandidat/defaultPicture.png"
-        }
-    },
+    company: String,
     position: String,
+    link: String,
     start: Date,
-    lastUpdate: Date,
-    active: Boolean,
+    active: {
+      type: Boolean,
+      default: true
+    },
     status: {
         type: String,
-        enum: ["Interest", "CV Sent", "Phone Interview", "F2F Interview", "Coding Challenge", "Offer", "Offer declined", "Hired", "Rejected"]
+        enum: ["CV Sent", "Interview", "Offer", "Hired", "Rejected", "No interest"]
       },
     interviews: [{
         type: Schema.Types.ObjectId,

@@ -9,9 +9,10 @@ export default class Services {
         })
     }
 
-    getAllApplications = () => this._service.get('/applications')
+    getAllApplications = () => this._service.get('/dashboard')
     createApplication = application => this._service.post('/new', application)
 
+    getAllStatus = () => this._service.get('/dashboard')
 
 
 }
