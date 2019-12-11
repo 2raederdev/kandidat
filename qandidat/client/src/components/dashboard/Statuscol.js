@@ -22,16 +22,43 @@ class StatusCol extends React.Component {
     componentDidMount = () => this.updateApplicationsList()
 
     updateApplicationsList = () => {
-        this._service.getAllApplications()
-            .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
-            .catch(err => console.log("Error", err))
+
+        if (this.props.className === "CV Sent") {
+            this._service.getAllApplicationsCVSent()
+                .then(allApplicationsFromDB => { 
+                    // console.log(allApplicationsFromDB)
+                    this.setState({ applications: allApplicationsFromDB.data })
+                })
+                .catch(err => console.log("Error", err))
+        } else if (this.props.className === "Interview") {
+            this._service.getAllApplicationsInterview()
+                .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
+                .catch(err => console.log("Error", err))
+        } 
+        // else if (this.props.className === "Offer") {
+        //     this._service.getAllApplicationsOffer()
+        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
+        //         .catch(err => console.log("Error", err))
+        // } else if (this.props.className === "Hired") {
+        //     this._service.getAllApplicationsHired()
+        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
+        //         .catch(err => console.log("Error", err))
+        // } else if (this.props.className === "Rejected") {
+        //     this._service.getAllApplicationsRejected()
+        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
+        //         .catch(err => console.log("Error", err))
+        // } else if (this.props.className === "Not interested") {
+        //     this._service.getAllApplicationsNotInterested()
+        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
+        //         .catch(err => console.log("Error", err))
+        // } 
     }
 
     render() {
         return (
             <>
             <p>{this.props.title}</p>
-            <Row>
+            <Row className={this.props.className}>
             {this.state.applications.map(application => <ApplicationCard key={application._id} {...application} />)}
             </Row>  
             </>          

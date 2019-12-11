@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Service from './service/Auth.service'
 
@@ -14,7 +14,7 @@ import Agenda from './components/agenda/Agenda'
 
 /* ---------  APPLICATION COMPONENTS --------- */
 
-import ApplicationList from "./components/applications/Application-list"
+// import ApplicationList from "./components/applications/Application-list"
 
 /* ---------  UI COMPONENTS --------- */
 
@@ -35,6 +35,9 @@ class App extends Component {
     this.state = { loggedInUser: null }
     this._service = new Service()
   }
+
+  componentDidMount = () => console.log(this.state.loggedInUser)
+
 
   setTheUser = user => {
     this.setState({ loggedInUser: user })
@@ -58,17 +61,18 @@ class App extends Component {
 
     return (
       <>
-        <Navbar loggedInUser={this.state.loggedInUser} setUser={this.setTheUser} />
+        <Navbar loggedInUser={this.state.loggedInUser} setUser={this.setTheUser} /*idUser={this.state.loggedInUser.data._id}*/ />
 
         <Switch>
           <Route exact path="/" component={Index} />
-          <Route exact path="/company" component={Company} />
-          <Route exact path="/mail" component={Mail} />
-          <Route exact path="/agenda" component={Agenda} />
+          <Route exact path="/company" render={() => <Company loggedInUser={this.state.loggedInUser}/>} />
+          <Route exact path="/mail" render={() => <Mail loggedInUser={this.state.loggedInUser}/>} />
+          <Route exact path="/agenda" render={() => this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser}/> : <Redirect to="/"/>}
+            />
 
-
-          <Route exact path="/dashboard" render={() => <Dashboard loggedInUser={this.state.loggedInUser}/>} />
-          <Route exact path="/applications" render={() => <ApplicationList loggedInUser={this.state.loggedInUser}/>} />
+          <Route exact path="/dashboard" render={() => 
+          this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser}/> : <Redirect to="/"/>}
+            />
 
           <Route path="/signup" render={match => <Signup setUser={this.setTheUser} {...match} />} />
           <Route path="/login" render={match => <Login setUser={this.setTheUser} {...match} />} />

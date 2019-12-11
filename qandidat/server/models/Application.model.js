@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const applicationSchema = new Schema({
+    user:{
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    },
     company: String,
     position: String,
     link: String,
@@ -12,7 +16,8 @@ const applicationSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ["CV Sent", "Interview", "Offer", "Hired", "Rejected", "No interest"]
+        enum: ["CV Sent", "Interview", "Offer", "Hired", "Rejected", "Not interested"],
+        default: "CV Sent"
       },
     interviews: [{
         type: Schema.Types.ObjectId,

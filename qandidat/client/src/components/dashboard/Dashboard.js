@@ -16,45 +16,19 @@ class Dashboard extends React.Component {
         super(props)
         this._service = new Service()
         this.state = {
-            staten: [],
             applications: [],
-            showModalWindow: false
+            showModalWindow: false,
+            loggedInUser: props.loggedInUser
         }
     }
 
-    componentDidMount = () => 
-    {
-        this.dashboard()
-        this.updateApplicationsList()
+    handleShow = () => {
+        console.log(this.state.loggedInUser)
+    this.setState({ showModalWindow: true })
     }
-
-    handleShow = () => this.setState({ showModalWindow: true })
     handleClose = () => this.setState({ showModalWindow: false })
 
-    // dashboard = () => {
-
-    //     this._service.getAllStatus()
-    //         .then(allStatusFromDB => {
-    //             console.log(allStatusFromDB.data)
-    //             // this.setState({ staten: allStatusFromDB.data })
-    //         })
-    //         .catch(err => console.log("Error", err))
-    // }
-
-
-    updateApplicationsList = () => {
-        this._service.getAllApplications()
-            .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
-            .catch(err => console.log("Error", err))
-    }
-
-    dashboard = () => {
-        this._service.getAllStatus()
-        .then(allApplicationsFromDB => this.setState({ staten: allApplicationsFromDB.data }))
-        .catch(err => console.log("Error", err))
-    }
-
-    
+   
     render() {
 
     
@@ -75,22 +49,22 @@ class Dashboard extends React.Component {
 
                     <Row style={{ marginLeft: 20, marginRight: 20 }}>
                         <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol title="CV Sent"/>
+                            <StatusCol loggedInUser={this.state.loggedInUser} className="CV Sent" title="CV Sent"/>
                         </Col>
                         <Col style={{marginLeft:20}}lg={2} md={6} sm={12}>
-                            <StatusCol title="Interview"/>
+                            <StatusCol loggedInUser={this.state.loggedInUser} className="Interview" title="Interview"/>
                         </Col>
                         <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol title="Offer"/>
+                            <StatusCol loggedInUser={this.state.loggedInUser} className="Offer" title="Offer"/>
                         </Col>
                         <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol title="Hired"/>
+                            <StatusCol loggedInUser={this.state.loggedInUser} className="Hired" title="Hired"/>
                         </Col>
                         <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol title="Rejected" />
+                            <StatusCol loggedInUser={this.state.loggedInUser} className="Rejected" title="Rejected" />
                         </Col>
                         <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol title="No interest" />
+                            <StatusCol loggedInUser={this.state.loggedInUser} className="Not interested" title="No interest" />
                         </Col>
                         
                     </Row>
@@ -104,7 +78,7 @@ class Dashboard extends React.Component {
                 <Modal.Title>Nueva candidatura</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <ApplicationForm closeModalWindow={this.handleClose} updateApplicationsList={this.updateApplicationsList} />
+                <ApplicationForm loggedInUser={this.state.loggedInUser} updateApplicationsList={this.updateApplicationsList} closeModalWindow={this.handleClose} />
             </Modal.Body>
             </Modal>
 

@@ -18,7 +18,8 @@ class SignupForm extends Component {
             .then(theNewUser => {
                 this.props.setUser(theNewUser.data)
                 this.setState({ username: '', password: '' })
-                this.props.history.push('/applications')            // REDIRECCIONAMIENTO
+                this.props.history.push(`/dashboard`)            // REDIRECCIONAMIENTO
+                // this.props.history.push(`/dashboard/${theNewUser.data._id}`)            // REDIRECCIONAMIENTO
             })
             .catch(err => console.log(err.response.data.message))
     }

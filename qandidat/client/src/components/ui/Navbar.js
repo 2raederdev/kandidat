@@ -12,6 +12,7 @@ class Navigation extends Component {
     constructor(props) {
         super(props)
         this._service = new Service()
+        
     }
 
     logoutUser = () => {
@@ -24,7 +25,7 @@ class Navigation extends Component {
 
     render() {
 
-        const saludo = this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'
+        // const saludo = this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'
 
         let buttonStyle = {
             color: "#1C1259",
@@ -43,8 +44,7 @@ class Navigation extends Component {
                     <Navbar.Collapse>
                         <Nav className="ml-auto theLinks">
                         <Nav.Link as="li"><Link to="/">Inicio</Link></Nav.Link>
-                            <Nav.Link as="li"><Link to="/dashboard">Dashboard</Link></Nav.Link>
-                            <Nav.Link as="li"><Link to="/applications">Candidaturas</Link></Nav.Link>
+                            <Nav.Link as="li"><Link to='dashboard' >Dashboard</Link></Nav.Link>
                             <Nav.Link as="li"><Link to="/company">Empresa</Link></Nav.Link>
                             <Nav.Link as="li"><Link to="mail">Email</Link></Nav.Link>
                             <Nav.Link as="li"><Link to="/agenda">Agenda</Link></Nav.Link>

@@ -12,7 +12,7 @@ require('./configs/middlewares.config')(app)
 require('./configs/view-engine.config')(app)
 require('./configs/session.config')(app)
 
-app.use('/applications', require('./routes/application.routes'))
+app.use('/dashboard', require('./routes/application.routes'))
 app.use('/auth', require('./routes/auth.routes'))
 
 module.exports = app

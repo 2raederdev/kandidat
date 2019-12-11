@@ -4,15 +4,26 @@ export default class Services {
 
     constructor() {
         this._service = axios.create({
-            baseURL: 'http://localhost:5000/applications',
+            baseURL: `http://localhost:5000/dashboard`,
             withCredentials: true   // RUTAS PERSISTENTES
         })
     }
 
-    getAllApplications = () => this._service.get('/dashboard')
-    createApplication = application => this._service.post('/new', application)
+    getAllApplicationsCVSent = () => this._service.get('/dashboardcvsent')
 
-    getAllStatus = () => this._service.get('/dashboard')
+    getAllApplicationsInterview = () => this._service.get(`/dashboardinterview`)
+
+    // getAllApplicationsOffer = () => this._service.get(`/:id/dashboardoffer`)
+
+    // getAllApplicationsHired = () => this._service.get(`/:id/dashboardhired`)
+
+    // getAllApplicationsRejected = () => this._service.get(`/:id/dashboardrejected`)
+
+    // getAllApplicationsNotInterested = () => this._service.get(`/:id/dashboardnotinterested`)
+
+
+    
+    createApplication = application => this._service.post('/new', application)
 
 
 }
