@@ -53,4 +53,18 @@ router.post('/new', (req, res) => {
         .catch(err => console.log('DB error', err))
 })
 
+router.get('/application/:id', (req, res) => {
+    const applicationId = req.params.id
+    Application.findById(applicationId)
+        .then(theApplication => res.json(theApplication))
+        .catch(err => console.log('DB error', err))
+})
+
+router.get('/delete/:id', (req, res) => {
+    const applicationId = req.params.id
+    Application.findByIdAndDelete(applicationId)
+      .then(() => res.redirect('/dashboard'))
+      .catch(err => console.log(err))
+})
+
 module.exports = router

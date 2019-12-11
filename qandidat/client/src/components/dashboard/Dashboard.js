@@ -27,18 +27,7 @@ class Dashboard extends React.Component {
         console.log("Entra la función hadleClose")
     this.setState({ showModalWindow: false })
     }
-
-    updateApplicationsList = () => {
-
-        // this._service.getAllApplications()
-        //     .then(allCoastersFromDB => this.setState({ applications: allCoastersFromDB.data }))
-        //     .catch(err => console.log("Error", err))
-
-    }
-
-
-
-   
+  
     render() {
 
     

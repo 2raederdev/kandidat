@@ -72,7 +72,7 @@ class ApplicationForm extends Component {
                 </Form.Control> */}
                 </Form.Group>
                
-                <Button variant="danger" type="submit">Crear applicación</Button>
+                <Button variant="danger" type="submit">Crear candidatura</Button>
 
             </Form>
         )

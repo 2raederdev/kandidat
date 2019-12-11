@@ -31,8 +31,14 @@ class StatusCol extends React.Component {
     this.setState({ showModalWindow: false })
     }
 
-    
+
     componentDidMount = () => {
+        this.updateApplicationsList()
+    }
+
+    deleteApplication = id => {
+
+        this._service.deleteApplication(id)
         this.updateApplicationsList()
     }
 
@@ -115,7 +121,7 @@ class StatusCol extends React.Component {
 
             <p>{this.props.title}</p>
             <Row className={this.props.className}>
-            {this.state.applications.map(application => <ApplicationCard key={application._id} {...application} />)}
+            {this.state.applications.map(application => <ApplicationCard delete={this.deleteApplication} key={application._id} {...application} />)}
             </Row>  
 
             <Button variant="danger" onClick={this.handleShow}>Nueva candidatura</Button>

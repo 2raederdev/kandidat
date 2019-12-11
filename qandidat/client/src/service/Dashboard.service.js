@@ -25,4 +25,11 @@ export default class Services {
     
     createApplication = application => this._service.post('/new', application)
 
+    getOneApplication = id => this._service.get(`/application/${id}`)
+
+    // deleteOneApplication = id => this._service.get(`/application/${id}`)
+
+    deleteApplication = id => this._service.get(`/delete/${id}`)
+
+
 }

@@ -11,6 +11,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Company from './components/company/Company'
 import Mail from './components/mails/Mails'
 import Agenda from './components/agenda/Agenda'
+import ApplicationDetails from './components/applications/Application-details'
 
 /* ---------  APPLICATION COMPONENTS --------- */
 
@@ -69,6 +70,8 @@ class App extends Component {
           <Route exact path="/mail" render={() => <Mail loggedInUser={this.state.loggedInUser}/>} />
           <Route exact path="/agenda" render={() => this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser}/> : <Redirect to="/"/>}
             />
+          <Route path="/application/:id" component={ApplicationDetails} />
+
 
           <Route exact path="/dashboard" render={match => 
           this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
