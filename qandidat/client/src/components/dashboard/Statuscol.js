@@ -3,8 +3,10 @@ import React from 'react'
 import Service from '../../service/Dashboard.service'
 
 import ApplicationCard from '../applications/Application-card'
+import ApplicationForm from '../applications/Application-form'
 
-import { Row } from 'react-bootstrap'
+
+import { Row, Modal, Button } from 'react-bootstrap'
 
 
 import './Dashboard.css';
@@ -15,12 +17,21 @@ class StatusCol extends React.Component {
         super(props)
         this._service = new Service()
         this.state = {
+            showModalWindow: false,
             applications: [],
             loggedInUser: props.loggedInUser._id
 
         }
     }
 
+
+    handleShow = () => this.setState({ showModalWindow: true })
+    handleClose = () => {
+        console.log("Entra la función hadleClose")
+    this.setState({ showModalWindow: false })
+    }
+
+    
     componentDidMount = () => {
         this.updateApplicationsList()
     }
@@ -100,11 +111,30 @@ class StatusCol extends React.Component {
     render() {
         return (
             <>
+        <section>
+
             <p>{this.props.title}</p>
             <Row className={this.props.className}>
             {this.state.applications.map(application => <ApplicationCard key={application._id} {...application} />)}
             </Row>  
-            </>          
+
+            <Button variant="danger" onClick={this.handleShow}>Nueva candidatura</Button>
+
+
+
+
+            </section>
+            
+            <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Nueva candidatura</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <ApplicationForm loggedInUser={this.state.loggedInUser} theStatus={this.props.className} closeModalWindow={this.handleClose} loggedInUser={this.state.loggedInUser} updateTheApplications={this.updateApplicationsList} />
+            </Modal.Body>
+            </Modal>
+
+            </>
         )
     }
 }

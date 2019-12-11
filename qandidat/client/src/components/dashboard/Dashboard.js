@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
         // this._service.getAllApplications()
         //     .then(allCoastersFromDB => this.setState({ applications: allCoastersFromDB.data }))
         //     .catch(err => console.log("Error", err))
-        
+
     }
 
 
@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
 
                 <Container style={{ marginLeft: 20, marginRight: 20 }}>
 
-                    <Button className="navBar" variant="danger" onClick={this.handleShow}>Nueva candidatura</Button>
+                    {/* <Button className="navBar" variant="danger" onClick={this.handleShow}>Nueva candidatura</Button> */}
 
 
                     <h1>Tu dashboard   </h1>
@@ -84,14 +84,14 @@ class Dashboard extends React.Component {
 
             </section>
 
-            <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
+            {/* <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Nueva candidatura</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <ApplicationForm closeModalWindow={this.handleClose} loggedInUser={this.state.loggedInUser} updateTheApplications={this.updateApplicationsList} />
             </Modal.Body>
-            </Modal>
+            </Modal> */}
 
         </>
 

@@ -14,12 +14,12 @@ class ApplicationForm extends Component {
         this._authservice = new AuthService()
         this.state = {
             application: {
-                user: props.loggedInUser._id,
+                user: props.loggedInUser,
                 company: "",
                 position: "",
                 link: "",
                 active: "",
-                status: ""            }
+                status: props.theStatus           }
         }
     }
 
@@ -61,7 +61,7 @@ class ApplicationForm extends Component {
                     <Form.Control type="text" name="link" onChange={this.handleInputChange} value={this.state.link} />
                 </Form.Group>
                 <Form.Group>
-                <Form.Label>Estado</Form.Label>
+                {/* <Form.Label>Estado</Form.Label>
                 <Form.Control as="select" type="text" name="status" onChange={this.handleInputChange} selected={this.state.status}>
                     <option value="CV Sent">CV Sent</option>
                     <option value="Interview">Interview</option>
@@ -69,7 +69,7 @@ class ApplicationForm extends Component {
                     <option value="Hired">Hired</option>
                     <option value="Rejected">Rejected</option>
                     <option value="Not interested">Not interested</option>
-                </Form.Control>
+                </Form.Control> */}
                 </Form.Group>
                
                 <Button variant="danger" type="submit">Crear applicación</Button>
