@@ -70,8 +70,8 @@ class App extends Component {
           <Route exact path="/agenda" render={() => this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser}/> : <Redirect to="/"/>}
             />
 
-          <Route exact path="/dashboard" render={() => 
-          this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser}/> : <Redirect to="/"/>}
+          <Route exact path="/dashboard" render={match => 
+          this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
             />
 
           <Route path="/signup" render={match => <Signup setUser={this.setTheUser} {...match} />} />

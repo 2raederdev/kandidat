@@ -22,11 +22,21 @@ class Dashboard extends React.Component {
         }
     }
 
-    handleShow = () => {
-        console.log(this.state.loggedInUser)
-    this.setState({ showModalWindow: true })
+    handleShow = () => this.setState({ showModalWindow: true })
+    handleClose = () => {
+        console.log("Entra la función hadleClose")
+    this.setState({ showModalWindow: false })
     }
-    handleClose = () => this.setState({ showModalWindow: false })
+
+    updateApplicationsList = () => {
+
+        // this._service.getAllApplications()
+        //     .then(allCoastersFromDB => this.setState({ applications: allCoastersFromDB.data }))
+        //     .catch(err => console.log("Error", err))
+        
+    }
+
+
 
    
     render() {
@@ -39,6 +49,7 @@ class Dashboard extends React.Component {
 
 
             <section>
+                {/* {false ? "es true" : <p>no es true"</p>} */}
 
                 <Container style={{ marginLeft: 20, marginRight: 20 }}>
 
@@ -78,7 +89,7 @@ class Dashboard extends React.Component {
                 <Modal.Title>Nueva candidatura</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <ApplicationForm loggedInUser={this.state.loggedInUser} updateApplicationsList={this.updateApplicationsList} closeModalWindow={this.handleClose} />
+                <ApplicationForm closeModalWindow={this.handleClose} loggedInUser={this.state.loggedInUser} updateTheApplications={this.updateApplicationsList} />
             </Modal.Body>
             </Modal>
 

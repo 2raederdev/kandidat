@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
+
 
 import Service from '../../service/Dashboard.service'
+import AuthService from '../../service/Auth.service'
 
 class ApplicationForm extends Component {
 
     constructor(props) {
         super(props)
         this._service = new Service()
+        this._authservice = new AuthService()
         this.state = {
             application: {
                 user: props.loggedInUser._id,
@@ -15,34 +19,34 @@ class ApplicationForm extends Component {
                 position: "",
                 link: "",
                 active: "",
-                status: ""
-            }
+                status: ""            }
         }
     }
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log(this.state.application)
         this._service.createApplication(this.state.application)
-            .then(x => {
+            .then(() => {
                 this.props.closeModalWindow()
-                this.props.updateApplicationsList()
+                this.props.updateTheApplications()
             })
             .catch(err => console.log(err))
     }
-
 
     handleInputChange = e => {
         let { name, value } = e.target
         this.state.application.active = true
         this.setState({
             application: { ...this.state.application, [name]: value },
-
         })
     }
 
     render() {
+
+        
         return (
+            // this.props.closeModalWindow() ? <Redirect to="/dashboard"/> : null
+
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label>Empresa</Form.Label>
@@ -69,6 +73,7 @@ class ApplicationForm extends Component {
                 </Form.Group>
                
                 <Button variant="danger" type="submit">Crear applicación</Button>
+
             </Form>
         )
     }

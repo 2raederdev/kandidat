@@ -16,43 +16,86 @@ class StatusCol extends React.Component {
         this._service = new Service()
         this.state = {
             applications: [],
+            loggedInUser: props.loggedInUser._id
+
         }
     }
 
-    componentDidMount = () => this.updateApplicationsList()
+    componentDidMount = () => {
+        this.updateApplicationsList()
+    }
 
     updateApplicationsList = () => {
 
         if (this.props.className === "CV Sent") {
             this._service.getAllApplicationsCVSent()
                 .then(allApplicationsFromDB => { 
-                    // console.log(allApplicationsFromDB)
-                    this.setState({ applications: allApplicationsFromDB.data })
+                    
+                    let withId = 
+                    allApplicationsFromDB.data.filter(application => application.user  === this.state.loggedInUser
+                    )
+
+                    this.setState({ applications: withId})
                 })
                 .catch(err => console.log("Error", err))
         } else if (this.props.className === "Interview") {
             this._service.getAllApplicationsInterview()
-                .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
+                .then(allApplicationsFromDB => { 
+                    
+                    let withId = 
+                    allApplicationsFromDB.data.filter(application => application.user  === this.state.loggedInUser
+                    )
+
+                    this.setState({ applications: withId})
+                })
+                .catch(err => console.log("Error", err))
+        }   else if (this.props.className === "Offer") {
+            this._service.getAllApplicationsOffer()
+                .then(allApplicationsFromDB => { 
+
+                    let withId = 
+                    allApplicationsFromDB.data.filter(application => application.user  === this.state.loggedInUser
+                    )
+
+                    this.setState({ applications: withId})
+                })
+                .catch(err => console.log("Error", err))
+        } else if (this.props.className === "Hired") {
+            this._service.getAllApplicationsHired()
+                .then(allApplicationsFromDB => { 
+                    
+                    let withId = 
+                    allApplicationsFromDB.data.filter(application => application.user  === this.state.loggedInUser
+                    )
+
+                    this.setState({ applications: withId})
+                })
+                .catch(err => console.log("Error", err))
+        } else if (this.props.className === "Rejected") {
+            this._service.getAllApplicationsRejected()
+                .then(allApplicationsFromDB => { 
+                    
+                    let withId = 
+                    allApplicationsFromDB.data.filter(application => application.user  === this.state.loggedInUser
+                    )
+
+                    this.setState({ applications: withId})
+                })
+                .catch(err => console.log("Error", err))
+        } else if (this.props.className === "Not interested") {
+            this._service.getAllApplicationsNotInterested()
+                .then(allApplicationsFromDB => { 
+                    
+                    let withId = 
+                    allApplicationsFromDB.data.filter(application => application.user  === this.state.loggedInUser
+                    )
+
+                    this.setState({ applications: withId})
+                })
                 .catch(err => console.log("Error", err))
         } 
-        // else if (this.props.className === "Offer") {
-        //     this._service.getAllApplicationsOffer()
-        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
-        //         .catch(err => console.log("Error", err))
-        // } else if (this.props.className === "Hired") {
-        //     this._service.getAllApplicationsHired()
-        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
-        //         .catch(err => console.log("Error", err))
-        // } else if (this.props.className === "Rejected") {
-        //     this._service.getAllApplicationsRejected()
-        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
-        //         .catch(err => console.log("Error", err))
-        // } else if (this.props.className === "Not interested") {
-        //     this._service.getAllApplicationsNotInterested()
-        //         .then(allApplicationsFromDB => this.setState({ applications: allApplicationsFromDB.data }))
-        //         .catch(err => console.log("Error", err))
-        // } 
     }
+
 
     render() {
         return (

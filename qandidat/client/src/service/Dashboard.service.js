@@ -9,21 +9,20 @@ export default class Services {
         })
     }
 
+    getAllApplications = () => this._service.get('/dashboard')
+
     getAllApplicationsCVSent = () => this._service.get('/dashboardcvsent')
 
     getAllApplicationsInterview = () => this._service.get(`/dashboardinterview`)
 
-    // getAllApplicationsOffer = () => this._service.get(`/:id/dashboardoffer`)
+    getAllApplicationsOffer = () => this._service.get(`/dashboardoffer`)
 
-    // getAllApplicationsHired = () => this._service.get(`/:id/dashboardhired`)
+    getAllApplicationsHired = () => this._service.get(`/dashboardhired`)
 
-    // getAllApplicationsRejected = () => this._service.get(`/:id/dashboardrejected`)
+    getAllApplicationsRejected = () => this._service.get(`/dashboardrejected`)
 
-    // getAllApplicationsNotInterested = () => this._service.get(`/:id/dashboardnotinterested`)
-
-
+    getAllApplicationsNotInterested = () => this._service.get(`/dashboardnotinterested`)
     
     createApplication = application => this._service.post('/new', application)
-
 
 }
