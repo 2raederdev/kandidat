@@ -31,5 +31,6 @@ export default class Services {
 
     deleteApplication = id => this._service.get(`/delete/${id}`)
 
+    editApplication = ( id, { company, position, status, link } ) => this._service.post(`/application/${id}`, {company, position, status, link})
 
 }

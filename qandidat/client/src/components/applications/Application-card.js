@@ -37,8 +37,6 @@ class ApplicationCard extends Component {
             </Card.Body>
         </Card>
     
-
-{/* <Button variant="dark" onClick={() => this.props.delete(this.state.application.id)}>Eliminar</Button> */}
     </>
     )
 }

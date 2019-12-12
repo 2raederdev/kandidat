@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import Service from '../../service/Dashboard.service'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
+
+
+import EditApplication from '../applications/Application-edit'
+
 
 
 class ApplicationDetail extends Component {
@@ -9,47 +14,43 @@ class ApplicationDetail extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            application: [] 
+            application: [],
+            showModalWindow: false,
         }
         this._service = new Service()
     }
 
+    handleShow = () => this.setState({ showModalWindow: true })
+    handleClose = () => {
+        console.log("Entra la función hadleClose")
+    this.setState({ showModalWindow: false })
+    }
+
 
     componentDidMount = () => {
+        this.details()
+    }
+    
+    details = () => {   
         const applicationId = this.props.match.params.id
         this._service.getOneApplication(applicationId)
             .then(theApplication => this.setState({ application: theApplication.data }))
             .catch(err => console.log(err))
     }
 
-    // deleteThisTask() {
-    //     Application.remove(this.props.application._id);
-    //   }
+    render() {
 
+        let button
 
-
-    handleSubmit = e => {
-        e.preventDefault()
-        this._service.createApplication(this.state.application)
-            .then(() => {
-                this.props.closeModalWindow()
-                this.props.updateTheApplications()
-            })
-            .catch(err => console.log(err))
+    if(this.state.application.status === "Interview") {
+        button = <Button variant="danger" onClick={this.handleShow} >Añade una entrevista</Button> 
     }
 
 
-    // delete = () => {
-    //     const applicationId = this.props.match.params.id
-    //     this._service.getOneApplication(applicationId)
-    //         .then(theApplication => this.setState({ application: theApplication.data }))
-    //         .catch(err => console.log(err))
-    // }
 
-
-
-    render() {
         return (
+
+            <>
             <Container>
                 <section>
                     <p>Payaso</p>
@@ -67,9 +68,24 @@ class ApplicationDetail extends Component {
                     </Row>
                 </section>
 
-                <Button variant="danger" type="submit">Borrar candidatura</Button>
+                <Button variant="light" onClick={this.handleShow} >Edita candidatura</Button>
+                {button}
+
+
+
 
             </Container>
+
+            <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Edita la candidatura</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <EditApplication updateEdit={this.details} edit={this.state.application} closeModalWindow={this.handleClose} loggedInUser={this.state.loggedInUser} updateTheApplications={this.updateApplicationsList} />
+            </Modal.Body>
+            </Modal>
+
+            </>
         )
     }
 

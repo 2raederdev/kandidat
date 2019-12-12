@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import { Redirect } from 'react-router-dom'
 
 
 import Service from '../../service/Dashboard.service'

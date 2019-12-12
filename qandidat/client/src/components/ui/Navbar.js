@@ -22,7 +22,6 @@ class Navigation extends Component {
             })
             .catch(err => console.log(err))
     }
-
     render() {
 
         // const saludo = this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'

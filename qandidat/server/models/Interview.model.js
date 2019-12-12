@@ -7,7 +7,7 @@ const interviewSchema = new Schema({
       ref: 'Company'
     },
     address: String,
-    applications:[{
+    application:[{
         type: Schema.Types.ObjectId,
         ref: "Application"
     }],
@@ -15,12 +15,17 @@ const interviewSchema = new Schema({
       name: String,
       link: String
     },
+    date: Date,
+    time: String, 
+
     additionalInfo: String,
   }, 
   {
     timestamps: true
   }
 )
+
+// Añadir fecha con DATE (valorar hora que es TIME)
 
 const InterviewModel = mongoose.model('Interview', interviewSchema)
 module.exports = InterviewModel
