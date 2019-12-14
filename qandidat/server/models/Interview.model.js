@@ -2,19 +2,22 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const interviewSchema = new Schema({
-    company: {
+    user:{
       type: Schema.Types.ObjectId,
-      ref: 'Company'
+      ref: "User"
+    },
+    company: String,
+    position: String,
+    type: {
+      type: String,
+      enum: ["Telefónica", "Vídeo", "Presencial", "Coding Challenge"],
     },
     address: String,
-    application:[{
+    application:{
         type: Schema.Types.ObjectId,
         ref: "Application"
-    }],
-    contact: {
-      name: String,
-      link: String
     },
+    contactPerson: String,
     date: Date,
     time: String, 
 

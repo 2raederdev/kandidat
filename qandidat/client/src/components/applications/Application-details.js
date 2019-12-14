@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Service from '../../service/Dashboard.service'
+import InterviewService from '../../service/Interview.service'
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-
-
 import EditApplication from '../applications/Application-edit'
+import InterviewForm from '../agenda/Interview-form'
 
 
 
@@ -13,23 +13,26 @@ class ApplicationDetail extends Component {
 
     constructor(props) {
         super(props)
+        this._service = new Service()
+        this._interviewService = new InterviewService()
         this.state = { 
             application: [],
+            interviews: [],
             showModalWindow: false,
+            showModalInterviewForm: false,
+            loggedInUser: props.loggedInUser
         }
-        this._service = new Service()
     }
 
     handleShow = () => this.setState({ showModalWindow: true })
-    handleClose = () => {
-        console.log("Entra la función hadleClose")
-    this.setState({ showModalWindow: false })
-    }
+    handleClose = () => this.setState({ showModalWindow: false })
+    
 
+    handleInterviewShow = () => this.setState({ showModalInterviewForm: true })
+    handleInterviewClose = () =>  this.setState({ showModalInterviewForm: false })
 
-    componentDidMount = () => {
-        this.details()
-    }
+    componentDidMount = () => this.details()
+
     
     details = () => {   
         const applicationId = this.props.match.params.id
@@ -38,16 +41,21 @@ class ApplicationDetail extends Component {
             .catch(err => console.log(err))
     }
 
+
+
     render() {
 
         let button
+        let interview
 
     if(this.state.application.status === "Interview") {
-        button = <Button variant="danger" onClick={this.handleShow} >Añade una entrevista</Button> 
+        button = <Button variant="danger" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
     }
 
+    if(this.state.interviews.length >= 1) {
+        interview = <p><strong>Entrevistas</strong>Hola</p>
 
-
+    }
         return (
 
             <>
@@ -60,6 +68,7 @@ class ApplicationDetail extends Component {
                             <p><strong>Empresa:</strong> {this.state.application.company}</p>
                             <hr></hr>
                             <p><small>Link a la oferta:</small> {this.state.application.link}</p>
+                            {interview}
                             <Link to="/dashboard" className="btn btn-dark">Volver</Link>
                         </Col>
                         {/* <Col md={{ span: 4, offset: 2 }}>
@@ -69,6 +78,7 @@ class ApplicationDetail extends Component {
                 </section>
 
                 <Button variant="light" onClick={this.handleShow} >Edita candidatura</Button>
+                
                 {button}
 
 
@@ -82,6 +92,16 @@ class ApplicationDetail extends Component {
             </Modal.Header>
             <Modal.Body>
                 <EditApplication updateEdit={this.details} edit={this.state.application} closeModalWindow={this.handleClose} loggedInUser={this.state.loggedInUser} updateTheApplications={this.updateApplicationsList} />
+            </Modal.Body>
+            </Modal>
+
+
+            <Modal show={this.state.showModalInterviewForm} onHide={this.handleInterviewClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Añade una entrevista</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <InterviewForm interviewAdd={this.state.application} closeModalInterviewWindow={this.handleInterviewClose} loggedInUser={this.state.loggedInUser} />
             </Modal.Body>
             </Modal>
 

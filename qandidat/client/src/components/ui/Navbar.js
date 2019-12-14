@@ -38,7 +38,7 @@ class Navigation extends Component {
             this.props.loggedInUser ?
 
                 <Navbar className="color-nav" variant="dark" expand="md" >
-                    <Navbar /*style={logoStyle}*/ className="logo" as="li"><Link className="pupu" to="/">kandidat</Link></Navbar>
+                    <Navbar /*style={logoStyle}*/ className="logo" as="li"><Link className="logoLink" to="/">kandidat</Link></Navbar>
                     <Navbar.Toggle className="toggle" aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse>
                         <Nav className="ml-auto theLinks">
@@ -58,7 +58,7 @@ class Navigation extends Component {
             :
 
             <Navbar className="color-nav" variant="dark" expand="md">
-                    <Navbar /*style={logoStyle}*/ className="logo" as="li"><Link className="pupu" to="/">kandidat</Link></Navbar>
+                    <Navbar /*style={logoStyle}*/ className="logo" as="li"><Link className="logoLink" to="/">kandidat</Link></Navbar>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse>
                 <Nav className="ml-auto theLinks">

@@ -78,14 +78,6 @@ router.get('/delete/:id', (req, res) => {
 
 // Nun will ich die Bewerbungen bearbeiten
 
-// router.get('/edit', (req, res) => {
- 
-//     const applicationId = req.query.id
-//     Applicationer.findById(applicationId)
-//         .then(theApplication => res.render('coasters/edit-coaster',{coaster: results[0], parks: results[1]}))
-//      .catch(err => console.log(err))
-//   })
-
 
 router.post('/application/:id', (req, res) => {
     const { company, position, status, link } = req.body /*posile application*/

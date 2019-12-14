@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const express      = require('express')
-const path         = require('path');
 
 const app = express()
 
@@ -14,5 +13,7 @@ require('./configs/session.config')(app)
 
 app.use('/dashboard', require('./routes/application.routes'))
 app.use('/auth', require('./routes/auth.routes'))
+app.use('/api/interviews', require('./routes/interview.routes'))
+
 
 module.exports = app

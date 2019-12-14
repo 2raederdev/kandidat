@@ -8,7 +8,11 @@ class SignupForm extends Component {
     constructor(props) {
         super(props)
         this._service = new Service()
-        this.state = { username: '', password: '' }
+        this.state = { 
+            username: '', 
+            password: '',
+            showPassword: false,
+        }
     }
 
     handleSubmit = e => {
@@ -30,7 +34,32 @@ class SignupForm extends Component {
         this.setState({ [name]: value })
     }
 
+    handleCheckboxChange = () => this.setState({ showPassword: !this.state.showPassword })
+
+
     render() {
+
+        let inputType
+
+        if(this.state.showPassword) {
+        
+            inputType = 
+            
+            <Form.Group>
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control type="text" name="password" onChange={this.handleInputChange} value={this.state.password} />
+            </Form.Group>
+        } else {
+
+            inputType = 
+
+            <Form.Group>
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control type="password" name="password" onChange={this.handleInputChange} value={this.state.password} />
+            </Form.Group>
+        }
+
+
         return (
             <Container>
 
@@ -41,10 +70,14 @@ class SignupForm extends Component {
                         <Form.Label>Usuario</Form.Label>
                         <Form.Control type="text" name="username" onChange={this.handleInputChange} value={this.state.username} />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Contraseña</Form.Label>
-                        <Form.Control type="text" name="password" onChange={this.handleInputChange} value={this.state.password} />
+                    
+                    {inputType}
+
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Check onChange={this.handleCheckboxChange} type="checkbox" label="Ver contraseña" />
                     </Form.Group>
+
+
                     <Button variant="dark" type="submit">Registrarme</Button>
                 </Form>
 

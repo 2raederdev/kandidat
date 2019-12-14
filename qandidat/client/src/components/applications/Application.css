@@ -1,4 +1,9 @@
-.applicationCard {
-    padding: 0 50px;
-    margin: 20px 0
-  }
+  .detallesLink:hover {
+    color: #FF9B00;
+}
+
+.detallesLink {
+  color: #FF9B00;
+  text-decoration: none;
+  list-style-type: none;
+}

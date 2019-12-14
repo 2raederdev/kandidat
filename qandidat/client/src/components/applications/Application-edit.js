@@ -18,19 +18,8 @@ class EditApplication extends Component {
         }
     }
 
-
-    componentDidMount = () => {
-
-    }
-
-    // deleteThisTask() {
-    //     Application.remove(this.props.application._id);
-    //   }
-
-
     handleInputChange = e => {
         let { name, value } = e.target
-        // this.state.application.active = true
         this.setState({
             application: { ...this.state.application, [name]: value },
         })
@@ -51,21 +40,7 @@ class EditApplication extends Component {
             .catch(err => console.log(err))
     }
 
-    // handleSubmit = e => {
-    //     e.preventDefault()
-    //     console.log(this.state.application)
-
-    //     this._service.editApplication(this.state.application, this.state.application.id )
-    //         .then( theApplicationToEdit => {
-    //             this.props.closeModalWindow()
-    //             this.setState({company: '', position: '', link: '', status: ''},
-    //             () => this.props.updateEdit(theApplicationToEdit.data))
-                
-    //             // this.props.update(theApplicationToEdit.data) 
-    //             })
-    //             .catch(err => console.log(err))
-    // }
-    
+   
     render() {
         return (
 

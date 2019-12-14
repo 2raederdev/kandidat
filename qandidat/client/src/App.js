@@ -12,10 +12,9 @@ import Company from './components/company/Company'
 import Mail from './components/mails/Mails'
 import Agenda from './components/agenda/Agenda'
 import ApplicationDetails from './components/applications/Application-details'
+import InterviewForm from './components/agenda/Interview-form'
 
-/* ---------  APPLICATION COMPONENTS --------- */
 
-// import ApplicationList from "./components/applications/Application-list"
 
 /* ---------  UI COMPONENTS --------- */
 
@@ -59,7 +58,7 @@ class App extends Component {
   render() {
 
     this.fetchUser()
-
+ 
     return (
       <>
         <Navbar loggedInUser={this.state.loggedInUser} setUser={this.setTheUser} /*idUser={this.state.loggedInUser.data._id}*/ />
@@ -68,13 +67,18 @@ class App extends Component {
           <Route exact path="/" component={Index} />
           <Route exact path="/company" render={() => <Company loggedInUser={this.state.loggedInUser}/>} />
           <Route exact path="/mail" render={() => <Mail loggedInUser={this.state.loggedInUser}/>} />
-          <Route exact path="/agenda" render={() => this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser}/> : <Redirect to="/"/>}
+          <Route exact path="/agenda" render={match => this.state.loggedInUser || this.state.loggedInUser === null ? <Agenda loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
             />
-          <Route path="/application/:id" component={ApplicationDetails} />
+          <Route path="/application/:id" render={match => 
+          this.state.loggedInUser || this.state.loggedInUser === null ? <ApplicationDetails loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+            />
 
+          <Route exact path="/newInterview" render={match => 
+          this.state.loggedInUser || this.state.loggedInUser === null ? <InterviewForm loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+            />
 
           <Route exact path="/dashboard" render={match => 
-          this.state.loggedInUser ? <Dashboard loggedInUser={this.state.loggedInUser} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+            this.state.loggedInUser || this.state.loggedInUser === null ? <Dashboard loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
             />
 
           <Route path="/signup" render={match => <Signup setUser={this.setTheUser} {...match} />} />

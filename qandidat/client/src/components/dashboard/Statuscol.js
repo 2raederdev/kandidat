@@ -136,7 +136,7 @@ class StatusCol extends React.Component {
                 <Modal.Title>Nueva candidatura</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <ApplicationForm loggedInUser={this.state.loggedInUser} theStatus={this.props.className} closeModalWindow={this.handleClose} loggedInUser={this.state.loggedInUser} updateTheApplications={this.updateApplicationsList} />
+                <ApplicationForm loggedInUser={this.state.loggedInUser} theStatus={this.props.className} closeModalWindow={this.handleClose} updateTheApplications={this.updateApplicationsList} />
             </Modal.Body>
             </Modal>
 
