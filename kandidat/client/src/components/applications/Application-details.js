@@ -31,13 +31,18 @@ class ApplicationDetail extends Component {
     handleInterviewShow = () => this.setState({ showModalInterviewForm: true })
     handleInterviewClose = () =>  this.setState({ showModalInterviewForm: false })
 
-    componentDidMount = () => this.details()
+    componentDidMount = () => {
+        this.details()}
 
     
     details = () => {   
         const applicationId = this.props.match.params.id
         this._service.getOneApplication(applicationId)
-            .then(theApplication => this.setState({ application: theApplication.data }))
+        
+            .then(theApplication => {
+                this.setState({ application: theApplication.data })
+                console.log(this.state.application.interviews)
+            })
             .catch(err => console.log(err))
     }
 
@@ -52,7 +57,7 @@ class ApplicationDetail extends Component {
         button = <Button variant="danger" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
     }
 
-    if(this.state.interviews.length >= 1) {
+    if(this.state.application.length >= 1) {
         interview = <p><strong>Entrevistas</strong>Hola</p>
 
     }
@@ -61,13 +66,16 @@ class ApplicationDetail extends Component {
             <>
             <Container>
                 <section>
-                    <p>Payaso</p>
                     <Row>
                         <Col md={6}>
                             <h1>Posición {this.state.application.position}</h1>
                             <p><strong>Empresa:</strong> {this.state.application.company}</p>
                             <hr></hr>
-                            <p><small>Link a la oferta:</small> {this.state.application.link}</p>
+                            
+
+                            <p><small><a href={this.state.application.link} target="_blank">Link a la oferta</a></small></p> 
+
+
                             {interview}
                             <Link to="/dashboard" className="btn btn-dark">Volver</Link>
                         </Col>

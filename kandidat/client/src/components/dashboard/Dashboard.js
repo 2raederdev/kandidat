@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
                     {/* <Button className="navBar" variant="danger" onClick={this.handleShow}>Nueva candidatura</Button> */}
 
 
-                    <h1>Tu dashboard   </h1>
+                    <h1>Hola {this.state.loggedInUser.username}!!! Éste es tu dashboard!!!</h1>
 
                     <Row style={{ marginLeft: 20, marginRight: 20 }}>
                         <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
