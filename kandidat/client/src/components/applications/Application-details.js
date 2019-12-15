@@ -17,7 +17,6 @@ class ApplicationDetail extends Component {
         this._interviewService = new InterviewService()
         this.state = { 
             application: [],
-            interviews: [],
             showModalWindow: false,
             showModalInterviewForm: false,
             loggedInUser: props.loggedInUser
@@ -41,7 +40,7 @@ class ApplicationDetail extends Component {
         
             .then(theApplication => {
                 this.setState({ application: theApplication.data })
-                console.log(this.state.application.interviews)
+                console.log(this.state.application)
             })
             .catch(err => console.log(err))
     }
@@ -57,8 +56,8 @@ class ApplicationDetail extends Component {
         button = <Button variant="danger" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
     }
 
-    if(this.state.application.length >= 1) {
-        interview = <p><strong>Entrevistas</strong>Hola</p>
+    if(this.state.application.interviews == null) {
+        interview = <p><strong>Click aquí</strong></p>
 
     }
         return (
@@ -76,7 +75,7 @@ class ApplicationDetail extends Component {
                             <p><small><a href={this.state.application.link} target="_blank">Link a la oferta</a></small></p> 
 
 
-                            {interview}
+                            <p>{interview}</p>
                             <Link to="/dashboard" className="btn btn-dark">Volver</Link>
                         </Col>
                         {/* <Col md={{ span: 4, offset: 2 }}>

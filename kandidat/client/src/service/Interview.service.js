@@ -17,5 +17,4 @@ export default class Services {
 
     editInterview = ( id, { company, position, type, address, contactPerson, date, time, additionalInfo } ) => this._interviewService.post(`/edit/${id}`, {company, position, type, address, contactPerson, date, time, additionalInfo})
 
-
 }

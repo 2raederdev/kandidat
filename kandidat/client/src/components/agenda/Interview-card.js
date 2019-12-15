@@ -24,7 +24,8 @@ class InterviewCard extends Component {
                 additionalInfo: props.interview.additionalInfo  
           }, 
             showModalWindow: false,
-            showEditModalWindow: false
+            showEditModalWindow: false,
+            showConfirmModalWindow: false
         }
     }
 
@@ -37,6 +38,15 @@ class InterviewCard extends Component {
     handleEditClose = () => this.setState({ showEditModalWindow: false, showModalWindow:false })
 
     handleDelete = () => this.props.delete(this.state.interview.id)
+
+    handleConfirmShow = () => this.setState({ showConfirmModalWindow: true })
+
+    handleConfirmCloseAndDelete = () => {
+        this.setState({ showModalConfirmWindow: false })
+        this.handleDelete()
+    }
+
+    handleConfirmCloseWithoutDelete = () => this.setState({ showConfirmModalWindow: false })
 
     // updateCard = () => this.props.update
 
@@ -62,7 +72,8 @@ class InterviewCard extends Component {
                             Ver detalles
                         </Button>
 
-                        <Button variant="light" onClick={this.handleDelete}>
+
+                        <Button variant="light" onClick={this.handleConfirmShow}>
                             Borrar entrevista
                         </Button>
 
@@ -95,9 +106,16 @@ class InterviewCard extends Component {
             <Modal.Body>
                 <EditInterview updateCard={this.props.update} edit={this.state.interview} details={this.state.interview}  closeModalWindow={this.handleEditClose}/>
             </Modal.Body>
-            {/* <Modal.Footer>
-                    <Button onClick={this.handleEditClose}>Cerrar</Button>
-            </Modal.Footer> */}
+        </Modal>
+
+        <Modal show={this.state.showConfirmModalWindow} onHide={this.handleConfirmCloseWithoutDelete}>
+            <Modal.Header closeButton>
+                <Modal.Title>¿Estás seguro de querer eliminar esta entrevista?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Button onClick={this.handleConfirmCloseAndDelete}>Sí</Button>
+                <Button onClick={this.handleConfirmCloseWithoutDelete}>No</Button>
+            </Modal.Body>
         </Modal>
 
 

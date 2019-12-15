@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const Application = require('../models/Application.model')
+const User = require('../models/User.model')
 
 // Todas candidaturas
 
 router.get('/dashboard', (req, res) => {
     Application
+        .populate("interviews")
         .then(allApplications => res.json(allApplications))
         .catch(err => console.log('DB error', err))
     })
@@ -15,12 +17,15 @@ router.get('/dashboard', (req, res) => {
 
 router.get('/dashboardcvsent', (req, res) => {
     Application.find({ status: "CV Sent" })
-    .then(allApplications => res.json( allApplications ))
+    .populate("interviews")
+    .then(allApplications => {res.json( allApplications )
+    console.log(`La fiesta del verano: ${req.user}`)})
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardinterview', (req, res) => {
     Application.find({ status: "Interview" })
+    .populate("interviews")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
@@ -33,18 +38,21 @@ router.get('/dashboardoffer', (req, res) => {
 
 router.get('/dashboardhired', (req, res) => {
     Application.find({ status: "Hired" })
+    .populate("interviews")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardrejected', (req, res) => {
     Application.find({ status: "Rejected" })
+    .populate("interviews")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardnotinterested', (req, res) => {
     Application.find({ status: "Not interested" })
+    .populate("interviews")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })

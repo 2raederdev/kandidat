@@ -3,11 +3,12 @@ import React from 'react'
 import Service from '../../service/Dashboard.service'
 import InterviewService from '../../service/Interview.service'
 
+import WrappedMap from "./Map";
 
 import InterviewCard from './Interview-card'
 
 
-import { Row, Modal, Button } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 class Agenda extends React.Component {
 
@@ -27,7 +28,6 @@ class Agenda extends React.Component {
 
     componentDidMount = () => {
         this.updateInterviewsList()
-        console.log(this.state.interviews)
     }
 
     deleteInterview = id => {
@@ -38,23 +38,19 @@ class Agenda extends React.Component {
 
 
     updateInterviewsList = () => {
-            console.log("entra el updatelist")
             this._interviewService.getAllInterviews()
                 .then(allInterviewsFromDB => { 
                     
+                    
                     let withId = 
                     allInterviewsFromDB.data.filter(interview => interview.user  === this.state.loggedInUser._id
-                    )
-
-                    this.setState({ interviews: withId})
+                        )
+                        
+                        this.setState({ interviews: withId})
                 })
                 .catch(err => console.log("Error", err))     
     }
 
-    // updateList = () => {
-    //     console.log("esto es una llmada al update")
-    //     this.updateInterviewsList()
-    // }
 
     render() {
 
@@ -62,16 +58,30 @@ class Agenda extends React.Component {
             <>
         <section>
 
-            <p>Algo</p>
-
             <Row>
-            {this.state.interviews.map(interview => <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} />)}
-            </Row>  
+                <Col md={6}>
+                {this.state.interviews.map(interview => <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} />)}
+                </Col>  
+
+                <Col md={6}>
+                <div style={{ width: "100%", height: "85vh" }}>
+                    <WrappedMap
+                    googleMapURL=
+                    {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyC0Hl0lxEoQa6Oy0mdrsk5eu4LZjGX4szU`}
+                    loadingElement={<div style={{ height: "100%" }} />}
+                    containerElement={<div style={{ height: "100%" }} />}
+                    mapElement={<div style={{ height: "100%" }} />}
+                    />
+                </div>
+                </Col>
+            </Row>
+
         </section>
 
             </>
         )
     }
 }
+
     
 export default Agenda

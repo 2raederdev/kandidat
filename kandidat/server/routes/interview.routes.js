@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Interview = require('../models/Interview.model')
-// const User = require('../models/User.model');
+const User = require('../models/User.model');
 const Application = require('../models/Application.model')
 
 
@@ -13,12 +13,18 @@ router.post('/newInterview', (req, res) => {
         .then((theNewInterview) => {
 
             res.json(theNewInterview)
-            Application.findById(interview.application)
-                .then(theApplication => {
-                    theApplication.interviews.push(theNewInterview._id)
-                    console.log(theApplication)
-                })
-                .catch(err => console.log('DB error', err))
+            // console.log(theNewInterview.application)
+            // const { interviews } = [theNewInterview.application]
+
+
+                // Application.findByIdAndUpdate(theNewInterview.application)                
+                // .then(theApplication => {
+                //     // console.log(theApplication)
+                //     theApplication.interviews.push(interview.application)
+                //     console.log(`Esto es la application de la nueva interview: ${theApplication}`)
+                //     })
+                //     .catch(err => console.log('DB error', err))
+            
         })
         .catch(err => console.log('DB error', err))
 })
