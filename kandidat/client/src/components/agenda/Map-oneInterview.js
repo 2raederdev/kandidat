@@ -1,3 +1,5 @@
+/*global google*/
+
 import React, { Component } from "react"
 
 import InterviewService from "../../service/Interview.service"
@@ -19,11 +21,9 @@ class Map extends Component {
     super(props);
     this._interviewService = new InterviewService();
     this.state = {
-      interviews: [],
+      interview: props.interview,
       address: "",
-      addresses: [],
       isOpen: false,
-      selectedInterview: null
     };
   }
 
@@ -31,32 +31,19 @@ class Map extends Component {
 
   updateInterviewsList = () => {
 
-  this._interviewService.getAllInterviews()
-      .then(allInterviewsFromDB => {this.setState({ interviews: allInterviewsFromDB.data})
-      console.log(this.state.interviews)
-      const addressesCopy = [...this.state.addresses];
-      
-      this.state.interviews.forEach(elm => {
-        console.log(elm.address)
-        Geocode.fromAddress(elm.address)
+        Geocode.fromAddress(this.state.interview.address)
           .then(
             response => {
               const { lat, lng } = response.results[0].geometry.location;
-              addressesCopy.push({ lat, lng });
               this.setState({
                 address: { lat, lng },
-                addresses: addressesCopy
               });
             },
             error => console.error(error)            
           )
           .catch(err => console.log(err));
-      }); // esto me da todas las coordenadas
-  })
-    .catch(err => console.log("Error", err));
   }
 
-  setInterview = interview => this.setState ({ selectedInterview: interview })
 
   handleToggleOpen = () => this.setState({ isOpen: true })
 
@@ -66,49 +53,19 @@ class Map extends Component {
   render() {
 
     return (
-
-
-        <GoogleMap
-        defaultZoom={10}
-        defaultCenter={{ lat: 40.4165, lng: -3.70256 }}
-      >
-
-        {this.state.addresses.map((elm, idx) => (
-          <>
-            <Marker
-              key={idx}
-              position={elm}
-              onClick={() => this.setInterview(elm)}
-            ></Marker>
-          </>
-        ))}
-        {this.state.selectedInterview && (
-          <InfoWindow 
-            position={this.state.selectedInterview}
-            onCloseClick = {() => {this.setInterview(null)}}
-          >
-            <>
-            <h1 className="mb-2 text-muted">Empresa: {this.state.selectedInterview.company}</h1>            
-                        <h2 className="mb-2 text-muted">Posición: {this.state.interviews.position} </h2>            
-                        <p className="mb-2 text-muted">Tipo de entrevista:{this.state.interviews.type} </p>            
-                        <p className="mb-2 text-muted">Dirección: {this.state.interviews.address}</p>            
-                        <p className="mb-2 text-muted">Persona de contacto: {this.state.interviews.contactPerson} </p>            
-                        <p className="mb-2 text-muted">Fecha:  </p>            
-                        <p className="mb-2 text-muted">Hora: {this.state.interviews.time} </p>            
-                        <p className="mb-2 text-muted">Información adicional: {this.state.interviews.additionalInfo} </p>            
-          </>
-          </InfoWindow>
-        )}
-
-
-      </GoogleMap>
-
-    );
+        <GoogleMap defaultZoom={10} defaultCenter={{ lat: 40.4165, lng: -3.70256 }}>
+        <Marker 
+            position={this.state.address}
+            icon={{
+                url: "https://res.cloudinary.com/tworaederdev/image/upload/v1576434174/qandidat/kandidatmarker_rvply5.png",
+                scaledSize: new google.maps.Size(31, 43)
+            }}
+        ></Marker>
+        </GoogleMap>
+    )
   }
 }
 
 const WrappedMap = withScriptjs(withGoogleMap(Map));
-
-
 
 export default WrappedMap;

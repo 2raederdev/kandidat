@@ -10,22 +10,18 @@ const Application = require('../models/Application.model')
 router.post('/newInterview', (req, res) => {
     const interview = req.body
     Interview.create(interview)
-        .then((theNewInterview) => {
-
-            res.json(theNewInterview)
-            // console.log(theNewInterview.application)
-            // const { interviews } = [theNewInterview.application]
-
-
-                // Application.findByIdAndUpdate(theNewInterview.application)                
-                // .then(theApplication => {
-                //     // console.log(theApplication)
-                //     theApplication.interviews.push(interview.application)
-                //     console.log(`Esto es la application de la nueva interview: ${theApplication}`)
-                //     })
-                //     .catch(err => console.log('DB error', err))
-            
-        })
+    .then(interview => {
+        Application.findByIdAndUpdate(
+          interview.application,
+          { $addToSet: { interviews: interview._id } },
+          { new: true }
+        )
+  
+          .then(application => {
+            res.json({ interview, application });
+          })
+          .catch(err => console.log(err));
+      })
         .catch(err => console.log('DB error', err))
 })
 

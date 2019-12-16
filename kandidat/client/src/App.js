@@ -19,6 +19,8 @@ import InterviewForm from './components/agenda/Interview-form'
 /* ---------  UI COMPONENTS --------- */
 
 import Navbar from './components/ui/Navbar'
+import CookieConsent from "react-cookie-consent";
+
 
 
 /* ---------  AUTH COMPONENTS --------- */
@@ -58,6 +60,11 @@ class App extends Component {
   render() {
 
     this.fetchUser()
+
+    let acceptButton = {
+      background: "#CACAEA",
+      cursor: "pointer",
+      }
  
     return (
       <>
@@ -85,7 +92,21 @@ class App extends Component {
           <Route path="/login" render={match => <Login setUser={this.setTheUser} {...match} />} />
 
 
-        </Switch>
+          </Switch>
+
+          <CookieConsent location="bottom"
+            buttonText="3, 2, 1... JavaScript!!"
+            cookieName="thisIsTheCookieName"
+            style={{ background: '#EE4266' }}
+            buttonStyle={{ acceptButton }}
+            expires={30} 
+            debug={true}
+            containerClasses="alert-warning"
+            acceptOnScroll={true}
+            acceptOnScrollPercentage={50}
+            >
+              KANDIDAT utilizaría este apartado para informarte del uso de cookies.
+          </CookieConsent>
 
       </>
 

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Application = require('../models/Application.model')
+const Interview = require('../models/Interview.model')
 const User = require('../models/User.model')
 
 // Todas candidaturas
@@ -60,11 +61,28 @@ router.get('/dashboardnotinterested', (req, res) => {
 // Crea una nueva candidatura  
 
 router.post('/new', (req, res) => {
-    const application = req.body
-    Application.create(application)
-        .then((theNewApplication) => res.json(theNewApplication))
-        .catch(err => console.log('DB error', err))
-})
+        const application = req.body
+        Application.create(application)
+            .then((application) => {
+                User.findByIdAndUpdate(
+                    application.user, 
+                    { $addToSet: { applications: application._id } },
+                    { new: true }
+                )
+                .then(user => {
+                    res.json({application, user })
+                })
+                .catch(err => console.log(err));
+            })
+            .catch(err => console.log('DB error', err))
+        })
+
+// router.post('/new', (req, res) => {
+//     const application = req.body
+//     Application.create(application)
+//         .then((theNewApplication) =>  res.json(theNewApplication))
+//         .catch(err => console.log('DB error', err))
+// })
 
 // Detalles de la candidatura
 

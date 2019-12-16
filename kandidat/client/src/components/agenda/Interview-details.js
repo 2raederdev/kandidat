@@ -20,7 +20,7 @@ class InterviewDetails extends Component {
         super(props)
         this._service = new Service()
         this.state = {
-            interview: props.details
+            interview: props.details,
         }
     }
 
@@ -30,9 +30,7 @@ class InterviewDetails extends Component {
         this.props.closeModalWindow()
     }  
     
-
-
-
+    componentDidMount = () => this.setState({ initialized: true})
 
     render() {
 
@@ -51,9 +49,9 @@ class InterviewDetails extends Component {
                         <h1 className="mb-2 text-muted">Empresa: {this.state.interview.company}</h1>            
                         <h2 className="mb-2 text-muted">Posición: {this.state.interview.position} </h2>            
                         <p className="mb-2 text-muted">Tipo de entrevista:{this.state.interview.type} </p>            
-                        <p className="mb-2 text-muted">Dirección: {dateShowed} </p>            
+                        <p className="mb-2 text-muted">Dirección: {this.state.interview.address} </p>            
                         <p className="mb-2 text-muted">Persona de contacto: {this.state.interview.contactPerson} </p>            
-                        <p className="mb-2 text-muted">Fecha: {this.state.interview.date.substr(0,10)} </p>            
+                        <p className="mb-2 text-muted">Fecha: {dateShowed} </p>            
                         <p className="mb-2 text-muted">Hora: {this.state.interview.time} </p>            
                         <p className="mb-2 text-muted">Información adicional: {this.state.interview.additionalInfo} </p>            
                     </Col>  
@@ -61,6 +59,8 @@ class InterviewDetails extends Component {
                     <Col md={6}>
                         <div style={{ width: "100%", height: "50vh" }}>
                             <WrappedMap
+                            interview={this.state.interview}
+                            
                             googleMapURL=
                             {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyC0Hl0lxEoQa6Oy0mdrsk5eu4LZjGX4szU`}
                             loadingElement={<div style={{ height: "120%" }} />}

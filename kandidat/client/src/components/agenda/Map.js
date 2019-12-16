@@ -1,3 +1,5 @@
+/*global google*/
+
 import React, { Component } from "react"
 
 import InterviewService from "../../service/Interview.service"
@@ -23,7 +25,8 @@ class Map extends Component {
       address: "",
       addresses: [],
       isOpen: false,
-      selectedInterview: null
+      selectedInterview: null,
+      loggedInUser: props.loggedInUser._id,
     };
   }
 
@@ -32,12 +35,17 @@ class Map extends Component {
   updateInterviewsList = () => {
 
   this._interviewService.getAllInterviews()
-      .then(allInterviewsFromDB => {this.setState({ interviews: allInterviewsFromDB.data})
-      console.log(this.state.interviews)
+      .then(allInterviewsFromDB => {
+        
+        let withId = 
+                    allInterviewsFromDB.data.filter(interview => interview.user  === this.state.loggedInUser
+                        )
+        
+        
+        this.setState({ interviews: withId})
       const addressesCopy = [...this.state.addresses];
-      
+      console.log(this.state.loggedInUser._id)
       this.state.interviews.forEach(elm => {
-        console.log(elm.address)
         Geocode.fromAddress(elm.address)
           .then(
             response => {
@@ -51,14 +59,14 @@ class Map extends Component {
             error => console.error(error)            
           )
           .catch(err => console.log(err));
-      }); // esto me da todas las coordenadas
+      }); 
   })
     .catch(err => console.log("Error", err));
   }
 
   setInterview = interview => this.setState ({ selectedInterview: interview })
 
-  handleToggleOpen = () => this.setState({ isOpen: true })
+  handleToggleOpen = () => this.setState({ isOpen: true }) 
 
   handleToggleClose = () => this.setState({ isOpen: false })
 
@@ -66,7 +74,6 @@ class Map extends Component {
   render() {
 
     return (
-
 
         <GoogleMap
         defaultZoom={10}
@@ -78,27 +85,31 @@ class Map extends Component {
             <Marker
               key={idx}
               position={elm}
-              onClick={() => this.setInterview(elm)}
+              onClick={() => {
+                this.setInterview(elm)
+                //  this.handleToggleOpen(elm)
+                }}
+                icon={{
+                  url: "https://res.cloudinary.com/tworaederdev/image/upload/v1576434174/qandidat/kandidatmarker_rvply5.png",
+                  scaledSize: new google.maps.Size(31, 43)
+                }}
             ></Marker>
           </>
         ))}
         {this.state.selectedInterview && (
           <InfoWindow 
             position={this.state.selectedInterview}
-            onCloseClick = {() => {this.setInterview(null)}}
+            onCloseClick = {() => { 
+              {this.setInterview(null)}
+          
+          }}
           >
             <>
-                        <h1 className="mb-2 text-muted">Empresa: {this.state.selectedInterview.company}</h1>            
-                        <h2 className="mb-2 text-muted">Posición: {this.state.interviews.position} </h2>            
-                        <p className="mb-2 text-muted">Tipo de entrevista:{this.state.interviews.type} </p>            
-                        <p className="mb-2 text-muted">Dirección: {this.state.interviews.address}</p>            
-                        <p className="mb-2 text-muted">Persona de contacto: {this.state.interviews.contactPerson} </p>            
-                        <p className="mb-2 text-muted">Fecha:  </p>            
-                        <p className="mb-2 text-muted">Hora: {this.state.interviews.time} </p>            
-                        <p className="mb-2 text-muted">Información adicional: {this.state.interviews.additionalInfo} </p>            
+              <h4>Aquí tienes una entrevista.</h4>
+              <p>Busca en la lista para saber más</p>          
           </>
           </InfoWindow>
-        )}
+        )} 
 
 
       </GoogleMap>

@@ -52,14 +52,17 @@ class ApplicationDetail extends Component {
         let button
         let interview
 
+
+
     if(this.state.application.status === "Interview") {
+        console.log(this.state.application)
         button = <Button variant="danger" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
     }
 
-    if(this.state.application.interviews == null) {
-        interview = <p><strong>Click aquí</strong></p>
+    let uno = console.log(this.state.application.interviews && this.state.application.interviews)
 
-    }
+    // this.state.application.interviews && 
+
         return (
 
             <>
@@ -69,8 +72,9 @@ class ApplicationDetail extends Component {
                         <Col md={6}>
                             <h1>Posición {this.state.application.position}</h1>
                             <p><strong>Empresa:</strong> {this.state.application.company}</p>
-                            <hr></hr>
-                            
+                            <hr></hr>        
+                            {uno}
+                            {/* <p>( {this.state.application.interviews[0]}</p>                    */}
 
                             <p><small><a href={this.state.application.link} target="_blank">Link a la oferta</a></small></p> 
 
