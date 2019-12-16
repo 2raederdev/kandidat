@@ -12,19 +12,21 @@ class Mail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        nameValue: '',
+        emailAddress: '',
+        emailSubject: '',
+        emailBody: ''
         }
     }
 
-    onChangeName(event) {
+    onChangeMail(e) {
+        let { name, value } = e.target
         this.setState({
-            nameValue:event.target.value
+            [name]: value
         });
-
     }
 
     sendMail(){
-        window.open(`mailto:${this.state.nameValue}?subject=Subject&body=message%20goes%20here`)
+        window.open(`mailto:${this.state.emailAddress}?subject=${this.state.emailSubject}&body=${this.state.emailBody}`)
     }
 
     render() {
@@ -40,9 +42,18 @@ class Mail extends Component {
                     <Form>
 
                         <Form.Group>
-                            <Form.Label>Dirección de correo</Form.Label>
-                        <Form.Control type="text" onChange={this.onChangeName.bind(this)}/>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control placeholder="Introduce la dirección de correo electrónico" type="text" name="emailAddress" onChange={this.onChangeMail.bind(this)}/>
                         </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Asunto</Form.Label>
+                            <Form.Control placeholder="Introduce el asunto de tu correo" type="text" name="emailSubject" onChange={this.onChangeMail.bind(this)}/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Texto del mensaje</Form.Label>
+                            <Form.Control as="textarea" rows="5" placeholder="Escribe tu correo" type="text" name="emailBody" onChange={this.onChangeMail.bind(this)}/>
+                        </Form.Group>
+
 
                         <Button target="_blank" email={this.state.inputEmail} onClick={this.sendMail.bind(this)}>Enviar mail</Button>
                     </Form>
@@ -55,14 +66,5 @@ class Mail extends Component {
         )
     }
 }
-
-    
-
-
-
-
-
-
-
 
 export default Mail

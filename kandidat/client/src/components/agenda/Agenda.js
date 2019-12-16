@@ -7,6 +7,8 @@ import WrappedMap from "./Map";
 
 import InterviewCard from './Interview-card'
 import Calendar from './Calendar'
+// import Calendar2 from 'react-calendar'
+
 
 
 import { Col, Row } from 'react-bootstrap'
@@ -45,7 +47,7 @@ class Agenda extends React.Component {
                 .then(allInterviewsFromDB => { 
                     
                     
-                    let withId = 
+                     let withId = 
                     allInterviewsFromDB.data.filter(interview => interview.user  === this.state.loggedInUser._id
                         )
                         
@@ -65,6 +67,7 @@ class Agenda extends React.Component {
 
             <Row>
                 <Calendar />
+                {/* <Calendar2/> */}
             </Row>
 
             <Row>
