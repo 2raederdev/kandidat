@@ -49,8 +49,11 @@ class App extends Component {
   fetchUser = () => {
     if (this.state.loggedInUser === null) {
       this._service.loggedin()
-        .then(theLoggedInUserFromTheServer => this.setState({ loggedInUser: theLoggedInUserFromTheServer.data }))
-        .catch(err => {
+        .then(theLoggedInUserFromTheServer => {
+          console.log(`holaaaaaaaaaaaaaaa ${theLoggedInUserFromTheServer.data} ` )
+         this.setState({ loggedInUser: theLoggedInUserFromTheServer.data })})
+        
+         .catch(err => {
           this.setState({ loggedInUser: false })
           console.log({ err })
         })

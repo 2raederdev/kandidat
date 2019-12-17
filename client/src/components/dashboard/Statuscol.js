@@ -47,6 +47,7 @@ class StatusCol extends React.Component {
         if (this.props.className === "CV Sent") {
             this._service.getAllApplicationsCVSent()
                 .then(allApplicationsFromDB => { 
+                    console.log("es la llamadaaaaaaaa")
                     
                     let withId = 
                     allApplicationsFromDB.data.filter(application => application.user  === this.state.loggedInUser

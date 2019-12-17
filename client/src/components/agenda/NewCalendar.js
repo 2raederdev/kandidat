@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 
+import { Button } from 'react-bootstrap'
+
+
 import "react-big-calendar/lib/css/react-big-calendar.css";
   
 const localizer = momentLocalizer(moment);
@@ -33,8 +36,15 @@ class MyCalendar extends Component {
 
   updateMyInterviewsList = () => {
 
-    let newList = this.props.interview.map(elm => `${elm.date}`)
+    let a, b
 
+    let newList = this.props.interview.map(elm => {
+
+      a =elm.date
+      b = elm.company
+    })
+    
+    console.log(`ppupupupupuu   ${a}, ${b}`)
   }
 
 render() {
@@ -51,6 +61,8 @@ render() {
                     startAccessor="start"
                     endAccessor="end"
                     />
+
+           <Button onclick={this.updateMyInterviewsList}></Button>         
     {this.props.interview.map(elm => `${elm.date}`)}
                 </div>
     )
