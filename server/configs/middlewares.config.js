@@ -21,5 +21,4 @@ module.exports = app => {
     app.use(cookieParser());
 
     app.use(cors(corsOptions))
-
 }
