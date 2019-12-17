@@ -17,7 +17,7 @@ class MyCalendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            myEventsList: [{
+            myInterviewsList: [{
                 title: 'Today',
                 start: new Date(`${today} 10:22:00`),
                 end: new Date(`${today} 10:42:00`)
@@ -31,6 +31,12 @@ class MyCalendar extends Component {
         }
     }
 
+  updateMyInterviewsList = () => {
+
+    let newList = this.props.interview.map(elm => `${elm.date}`)
+
+  }
+
 render() {
 
     return (
@@ -41,7 +47,7 @@ render() {
       >
                   <Calendar
                     localizer={localizer}
-                    events={this.state.myEventsList}
+                    events={this.state.myInterviewsList}
                     startAccessor="start"
                     endAccessor="end"
                     />

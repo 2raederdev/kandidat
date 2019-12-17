@@ -4,7 +4,7 @@ export default class Services {
 
     constructor() {
         this._service = axios.create({
-            baseURL: `http://localhost:5000/dashboard`,
+            baseURL: `http://localhost:5000/api/dashboard`,
             withCredentials: true   // RUTAS PERSISTENTES
         })
     }

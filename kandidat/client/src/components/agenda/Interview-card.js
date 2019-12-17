@@ -104,7 +104,7 @@ class InterviewCard extends Component {
                 <Modal.Title>Editar</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <EditInterview updateCard={this.props.update} edit={this.state.interview} details={this.state.interview}  closeModalWindow={this.handleEditClose}/>
+                <EditInterview handler = {this.handleConfirmCloseAndDelete} updateCard={this.props.update} edit={this.state.interview} details={this.state.interview}  closeModalWindow={this.handleEditClose}/>
             </Modal.Body>
         </Modal>
 

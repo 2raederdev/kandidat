@@ -39,6 +39,8 @@ class EditInterview extends Component {
                 console.log(this.props.updateCard)
                 this.props.updateCard()
                 this.props.closeModalWindow()
+                this.props.handle()  
+
             })
             .catch(err => console.log(err))
     }
