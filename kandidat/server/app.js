@@ -15,5 +15,6 @@ app.use('/api/dashboard', require('./routes/application.routes'))
 app.use('/auth', require('./routes/auth.routes'))
 app.use('/api/interviews', require('./routes/interview.routes'))
 
+app.use((req, res) => { res.sendFile(__dirname + "/public/index.html") })
 
 module.exports = app

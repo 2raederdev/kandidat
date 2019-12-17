@@ -85,7 +85,7 @@ class Agenda extends React.Component {
                     loggedInUser={this.state.loggedInUser}
                     interview={this.state.interviews}
                     googleMapURL=
-                    {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyC0Hl0lxEoQa6Oy0mdrsk5eu4LZjGX4szU`}
+                    {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
                     loadingElement={<div style={{ height: "100%" }} />}
                     containerElement={<div style={{ height: "100%" }} />}
                     mapElement={<div style={{ height: "100%" }} />}
