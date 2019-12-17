@@ -56,6 +56,7 @@ class ApplicationDetail extends Component {
 
     if(this.state.application.status === "Interview") {
         console.log(this.state.application)
+        console.log(this.state.application.interviews)
         button = <Button variant="danger" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
     }
 

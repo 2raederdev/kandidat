@@ -7,8 +7,8 @@ const User = require('../models/User.model')
 // Todas candidaturas
 
 router.get('/dashboard', (req, res) => {
-    Application
-        .populate("interviews")
+    Application.find()
+        .populate("Interview")
         .then(allApplications => res.json(allApplications))
         .catch(err => console.log('DB error', err))
     })
@@ -18,7 +18,7 @@ router.get('/dashboard', (req, res) => {
 
 router.get('/dashboardcvsent', (req, res) => {
     Application.find({ status: "CV Sent" })
-    .populate("interviews")
+    .populate("interview")
     .then(allApplications => {res.json( allApplications )
     console.log(`La fiesta del verano: ${req.user}`)})
     .catch(err => console.log('Error', err))
@@ -26,7 +26,7 @@ router.get('/dashboardcvsent', (req, res) => {
 
 router.get('/dashboardinterview', (req, res) => {
     Application.find({ status: "Interview" })
-    .populate("interviews")
+    .populate("contactPerson")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
@@ -39,21 +39,21 @@ router.get('/dashboardoffer', (req, res) => {
 
 router.get('/dashboardhired', (req, res) => {
     Application.find({ status: "Hired" })
-    .populate("interviews")
+    .populate("interview")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardrejected', (req, res) => {
     Application.find({ status: "Rejected" })
-    .populate("interviews")
+    .populate("interview")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardnotinterested', (req, res) => {
     Application.find({ status: "Not interested" })
-    .populate("interviews")
+    .populate("interview")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })

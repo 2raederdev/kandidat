@@ -246,7 +246,7 @@
   /* @end tail.DateTime */
   
 
-  .rbc-time-content, .rbc-time-header-gutter {
+  /* .rbc-time-content, .rbc-time-header-gutter {
     display: none !important;
 }
 
@@ -260,4 +260,4 @@
 
 .rbc-allday-cell {
     min-height: 637px;
-}
+} */

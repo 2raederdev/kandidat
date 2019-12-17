@@ -114,7 +114,7 @@ class App extends Component {
           </Switch>
 
           <CookieConsent location="bottom"
-            buttonText="3, 2, 1... JavaScript!!"
+            buttonText="Aceptar"
             cookieName="thisIsTheCookieName"
             style={{ background: '#EE4266' }}
             buttonStyle={{ acceptButton }}

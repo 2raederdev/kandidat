@@ -4,14 +4,6 @@ import { Container, Col, Row } from 'react-bootstrap'
 
 import WrappedMap from "./Map-oneInterview";
 
-import {
-    GoogleMap,
-    withScriptjs,
-    withGoogleMap,
-    Marker,
-    InfoWindow
-  } from "react-google-maps"
-
 import Service from '../../service/Dashboard.service'
 
 class InterviewDetails extends Component {

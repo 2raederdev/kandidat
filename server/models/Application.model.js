@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Interview = require('./Interview.model')
 
 const applicationSchema = new Schema({
     user:{

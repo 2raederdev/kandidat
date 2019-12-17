@@ -6,9 +6,9 @@ import InterviewService from '../../service/Interview.service'
 import WrappedMap from "./Map";
 
 import InterviewCard from './Interview-card'
-import Calendar from './Calendar'
+// import Calendar from './Calendar'
 import NewCalendar from './NewCalendar'
-import Calendar2 from 'react-calendar'
+// import Calendar2 from 'react-calendar'
 
 import './calendar.css'
 
@@ -68,10 +68,10 @@ class Agenda extends React.Component {
             <>
         <section>
 
-            <Row>
+            {/* <Row>
                 <Calendar />
                  <Calendar2/>
-            </Row>
+            </Row> */}
 
             <Row>
                 <Col md={6}>

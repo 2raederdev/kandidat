@@ -31,6 +31,10 @@ class Navigation extends Component {
             cursor: "pointer"
         }
 
+        let toggleStyle = {
+            background: "#FF9B00"
+        }
+
 
 
         return (
@@ -39,11 +43,11 @@ class Navigation extends Component {
 
                 <Navbar className="color-nav" variant="dark" expand="md" >
                     <Navbar /*style={logoStyle}*/ className="logo" as="li"><Link className="logoLink" to="/">kandidat</Link></Navbar>
-                    <Navbar.Toggle className="toggle" aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle style={toggleStyle} aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse>
                         <Nav className="ml-auto theLinks">
                         <Nav.Link as="li"><Link to="/">Inicio</Link></Nav.Link>
-                            <Nav.Link as="li"><Link to='/dashboard' >Dashboard</Link></Nav.Link>
+                            <Nav.Link as="li" ><Link to='/dashboard' >Dashboard</Link></Nav.Link>
                             <Nav.Link as="li"><Link to="/company">Empresa</Link></Nav.Link>
                             <Nav.Link as="li"><Link to="/mail">Email</Link></Nav.Link>
                             <Nav.Link as="li"><Link to="/agenda">Agenda</Link></Nav.Link>
