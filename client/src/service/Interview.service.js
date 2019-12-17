@@ -4,7 +4,7 @@ export default class Services {
 
     constructor() {
         this._interviewService = axios.create({
-            baseURL: `http://localhost:5000/api/interviews`,
+            baseURL: `${process.env.REACT_APP_URL}/api/interviews`,
             withCredentials: true   // RUTAS PERSISTENTES
         })
     }
