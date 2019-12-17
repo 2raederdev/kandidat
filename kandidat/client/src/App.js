@@ -72,9 +72,14 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component={Index} />
-          <Route exact path="/company" render={() => <Company loggedInUser={this.state.loggedInUser}/>} />
-          <Route exact path="/mail" render={() => <Mail loggedInUser={this.state.loggedInUser}/>} />
-          <Route exact path="/agenda" render={match => this.state.loggedInUser || this.state.loggedInUser === null ? <Agenda loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+          <Route path="/company" render={match => 
+          this.state.loggedInUser || this.state.loggedInUser === null ? <Company loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+            />
+          <Route path="/mail" render={match => 
+          this.state.loggedInUser || this.state.loggedInUser === null ? <Mail loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+            />
+          <Route path="/agenda" render={match => 
+          this.state.loggedInUser || this.state.loggedInUser === null ? <Agenda loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
             />
           <Route path="/application/:id" render={match => 
           this.state.loggedInUser || this.state.loggedInUser === null ? <ApplicationDetails loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}

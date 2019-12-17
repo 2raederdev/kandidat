@@ -245,3 +245,19 @@
   }
   /* @end tail.DateTime */
   
+
+  .rbc-time-content, .rbc-time-header-gutter {
+    display: none !important;
+}
+
+.rbc-time-header {
+    height: 650px;
+}
+    .rbc-time-header-content {
+        border-left: none;
+    
+}
+
+.rbc-allday-cell {
+    min-height: 637px;
+}
