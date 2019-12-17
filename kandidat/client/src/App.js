@@ -78,9 +78,16 @@ class App extends Component {
           <Route path="/mail" render={match => 
           this.state.loggedInUser || this.state.loggedInUser === null ? <Mail loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
             />
-          <Route path="/agenda" render={match => 
-          this.state.loggedInUser || this.state.loggedInUser === null ? <Agenda loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+
+          <Route exact path="/agenda" render={match => 
+            this.state.loggedInUser == null ? 
+            <Redirect to="/agenda"/> 
+            : this.state.loggedInUser ?
+               <Agenda loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> 
+               : <Redirect to="/"/>}
             />
+
+
           <Route path="/application/:id" render={match => 
           this.state.loggedInUser || this.state.loggedInUser === null ? <ApplicationDetails loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
             />
@@ -90,7 +97,11 @@ class App extends Component {
             />
 
           <Route exact path="/dashboard" render={match => 
-            this.state.loggedInUser || this.state.loggedInUser === null ? <Dashboard loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> : <Redirect to="/"/>}
+            this.state.loggedInUser == null ? 
+            <Redirect to="/dashboard"/> 
+            : this.state.loggedInUser ?
+               <Dashboard loggedInUser={this.state.loggedInUser || {}} setUser={this.setTheUser} {...match}/> 
+               : <Redirect to="/"/>}
             />
 
           <Route path="/signup" render={match => <Signup setUser={this.setTheUser} {...match} />} />
