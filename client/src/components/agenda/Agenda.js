@@ -6,9 +6,9 @@ import InterviewService from '../../service/Interview.service'
 import WrappedMap from "./Map";
 
 import InterviewCard from './Interview-card'
-// import Calendar from './Calendar'
+import Calendar from './Calendar'
 import NewCalendar from './NewCalendar'
-// import Calendar2 from 'react-calendar'
+import Calendar2 from 'react-calendar'
 
 import './calendar.css'
 
@@ -54,7 +54,7 @@ class Agenda extends React.Component {
                     allInterviewsFromDB.data.filter(interview => interview.user  === this.state.loggedInUser._id
                         )
                         
-                        this.setState({ interviews: withId})
+                        this.setState({ interviews: withId}, console.log("SET STATE AGENDA" + this.state.interviews))
                 })
                 .catch(err => console.log("Error", err))     
     }
@@ -63,15 +63,15 @@ class Agenda extends React.Component {
     render() {
 
         let theUser = this.state.interviews.user
-
+      
         return (
             <>
         <section>
 
-            {/* <Row>
+            <Row>
                 <Calendar />
                  <Calendar2/>
-            </Row> */}
+            </Row>
 
             <Row>
                 <Col md={6}>
