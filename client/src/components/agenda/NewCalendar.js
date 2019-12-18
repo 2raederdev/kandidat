@@ -25,27 +25,11 @@ class MyCalendar extends Component {
                 title: 'Today',
                 start: new Date(`${today} 10:22:00`),
                 end: new Date(`${today} 10:42:00`)
-              },{
-              title: `Tomorrow`,
-              start: new Date(`2019-12-23 10:22:00`),
-              end: new Date(`2019-12-23 10:42:00`)}],
-            initialized: false  ,
+              }],
             interviews: this.props.interview,
             loggedInUser: this.props.loggedInUser,
             showInterview: false
         }
-    }
-
-    // Hacer una copia del myInterviewlist. 
-    // a eso le hago el push de un objeto idéntico, 
-    // pero con los valores nuevos que yo le paso. Y después actualizo el setState
-
-    componentDidMount = () => {
-      this.setState({initialized:true})
-      
-        console.log("DID MOUNT NEW CALENDAR")
-      
-      
     }
 
   updateMyInterviewsList = () => {
@@ -79,7 +63,6 @@ class MyCalendar extends Component {
 
     this.setState({myInterviewsList: listCopy})
     
-    // console.log(`ppupupupupuu   ${a}, ${c}, ${b}`)
     console.log(`Hola Guille ${this.state.myInterviewsList}`)
     
   }
@@ -102,7 +85,7 @@ class MyCalendar extends Component {
       <Button onClick={this.handleClick}>Ver entrevistas</Button>
       <div
       // style={{ height: "75vh", marginTop: "25px" }}
-      style={{ height: "700px", marginTop: "25px" }}
+      style={{ height: "50vh" }}
       className="calendar-container">
 
                     <Calendar
@@ -111,8 +94,6 @@ class MyCalendar extends Component {
                     startAccessor="start"
                     endAccessor="end"
                     />
-
-    {this.props.interview ? this.props.interview.map(elm => `${elm.time}`) : null}
                   
                 </div>
                 </>

@@ -3,6 +3,9 @@ import React from 'react'
 import Service from '../../service/Dashboard.service'
 import InterviewService from '../../service/Interview.service'
 
+import { Button, Modal } from 'react-bootstrap'
+
+
 import WrappedMap from "./Map";
 
 import InterviewCard from './Interview-card'
@@ -26,7 +29,7 @@ class Agenda extends React.Component {
             showModalWindow: false,
             interviews: [],
             initialized: false,
-            loggedInUser: props.loggedInUser
+            loggedInUser: props.loggedInUser,
             
         }
     }
@@ -60,6 +63,12 @@ class Agenda extends React.Component {
     }
 
 
+    handleShow = () => this.setState({ showModalWindow: true })
+
+    handleClose = () => this.setState({ showModalWindow: false })
+
+
+
     render() {
 
         let theUser = this.state.interviews.user
@@ -74,11 +83,11 @@ class Agenda extends React.Component {
             </Row> */}
 
             <Row>
-                <Col md={6}>
+                <Col md={4}>
                 {this.state.interviews.map(interview => <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} />)}
                 </Col>  
 
-                <Col md={6}>
+                <Col md={4}>
                 <div style={{ width: "100%", height: "85vh" }}>
                     {this.state.initialized && (
                     <WrappedMap
@@ -92,15 +101,26 @@ class Agenda extends React.Component {
                     />)}
                 </div>
                 </Col>
+                <Col md={4}>
+                    <Button onClick={this.handleShow}>Ver Calendario</Button>
+                </Col>  
             </Row>
 
-            <Row>       
-                             
-                <NewCalendar className="calendar" loggedInUser={this.state.loggedInUser} interview={this.state.interviews}/>
-            </Row>
-            
 
         </section>
+            
+            <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Calendario de entrevistas</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <NewCalendar className="calendar" loggedInUser={this.state.loggedInUser} interview={this.state.interviews}/>
+            </Modal.Body>
+            <Modal.Footer>
+                    <Button onClick={this.handleEditShow}>Editar</Button>
+                    <Button onClick={this.handleClose}>Cerrar</Button>
+            </Modal.Footer>
+            </Modal> 
 
             </>
         )

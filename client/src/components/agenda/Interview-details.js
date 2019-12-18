@@ -38,14 +38,14 @@ class InterviewDetails extends Component {
                 <Row>
 
                     <Col md={6}>
-                        <h1 className="mb-2 text-muted">Empresa: {this.state.interview.company}</h1>            
-                        <h2 className="mb-2 text-muted">Posición: {this.state.interview.position} </h2>            
-                        <p className="mb-2 text-muted">Tipo de entrevista:{this.state.interview.type} </p>            
-                        <p className="mb-2 text-muted">Dirección: {this.state.interview.address} </p>            
-                        <p className="mb-2 text-muted">Persona de contacto: {this.state.interview.contactPerson} </p>            
-                        <p className="mb-2 text-muted">Fecha: {dateShowed} </p>            
-                        <p className="mb-2 text-muted">Hora: {this.state.interview.time} </p>            
-                        <p className="mb-2 text-muted">Información adicional: {this.state.interview.additionalInfo} </p>            
+                        <p className="mb-2 text-muted">Empresa:<small>{this.state.interview.company}</small></p>
+                        <p className="mb-2 text-muted">Posición: <small>{this.state.interview.position}</small></p>            
+                        <p className="mb-2 text-muted">Tipo de entrevista: <small>{this.state.interview.type}</small></p>            
+                        <p className="mb-2 text-muted">Dirección: <small>{this.state.interview.address}</small></p>            
+                        <p className="mb-2 text-muted">Persona de contacto: <small>{this.state.interview.contactPerson}</small></p>            
+                        <p className="mb-2 text-muted">Fecha: <small>{dateShowed}</small></p>            
+                        <p className="mb-2 text-muted">Hora: <small>{this.state.interview.time}</small> </p>            
+                        <p className="mb-2 text-muted">Información adicional: <small>{this.state.interview.additionalInfo}</small></p>            
                     </Col>  
 
                     <Col md={6}>

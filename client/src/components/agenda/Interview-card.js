@@ -48,7 +48,7 @@ class InterviewCard extends Component {
 
     handleConfirmCloseWithoutDelete = () => this.setState({ showConfirmModalWindow: false })
 
-    // updateCard = () => this.props.update
+    updateAgenda = () => this.props.update()
 
 
     render(){
@@ -91,7 +91,7 @@ class InterviewCard extends Component {
                 <Modal.Title>Detalles</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <InterviewDetails update={this.update} details={this.props.interview}  closeModalWindow={this.handleClose}/>
+                <InterviewDetails update={this.props.update} details={this.props.interview}  closeModalWindow={this.handleClose}/>
             </Modal.Body>
             <Modal.Footer>
                     <Button onClick={this.handleEditShow}>Editar</Button>
@@ -104,7 +104,7 @@ class InterviewCard extends Component {
                 <Modal.Title>Editar</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <EditInterview handler = {this.handleConfirmCloseAndDelete} updateCard={this.props.update} edit={this.state.interview} details={this.state.interview}  closeModalWindow={this.handleEditClose}/>
+                <EditInterview details={this.props.interview} updateAgenda={this.updateAgenda} handler = {this.handleConfirmCloseAndDelete} edit={this.state.interview}  closeModalWindow={this.handleEditClose}/>
             </Modal.Body>
         </Modal>
 

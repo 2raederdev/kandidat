@@ -40,7 +40,9 @@ class ApplicationDetail extends Component {
         
             .then(theApplication => {
                 this.setState({ application: theApplication.data })
-                console.log(this.state.application)
+                console.log(this.state.application.interviews)
+                this.state.application.interviews.map(elm => console.log(elm))
+
             })
             .catch(err => console.log(err))
     }
@@ -62,7 +64,9 @@ class ApplicationDetail extends Component {
 
     let uno = console.log(this.state.application.interviews && this.state.application.interviews)
 
-    // this.state.application.interviews && 
+
+    if(this.state.application.interviews) interview = <p as="li" to="/agenda">Agenda</p>
+
 
         return (
 
@@ -87,6 +91,8 @@ class ApplicationDetail extends Component {
                             <img src={this.state.coaster.imageUrl} alt={this.state.coaster.title}></img>
                         </Col> */}
                     </Row>
+
+
                 </section>
 
                 <Button variant="light" onClick={this.handleShow} >Edita candidatura</Button>

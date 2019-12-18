@@ -8,16 +8,17 @@ class EditInterview extends Component {
         super(props)
         this._interviewService = new InterviewService()
         this.state = { 
-            interview: {
+            interview: /*props.details*/
+            {
                 id: this.props.edit.id,
                 company: this.props.edit.company,
                 position: this.props.edit.position,
                 type: this.props.edit.type,
-                address: this.props.edit.address,
-                contactPerson: this.props.edit.contactPerson,
-                date: this.props.edit.date,
-                time: this.props.edit.time,
-                additionalInfo: this.props.edit.additionalInfo
+                address: this.props.details.address,
+                contactPerson: this.props.details.contactPerson,
+                date: this.props.details.date,
+                time: this.props.details.time,
+                additionalInfo: this.props.details.additionalInfo
             }
         }
     }
@@ -37,7 +38,7 @@ class EditInterview extends Component {
         this._interviewService.editInterview(id, interview)
             .then( x=> {
                 console.log(this.props.updateCard)
-                this.props.updateCard()
+                this.props.updateAgenda()
                 this.props.closeModalWindow()
                 this.props.handle()  
 
