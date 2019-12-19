@@ -126,7 +126,7 @@ class StatusCol extends React.Component {
             
             <Row className={this.props.className}>
                 <Button variant="danger" onClick={this.handleShow}>Nueva candidatura</Button>
-                {this.state.applications.map(application => <ApplicationCard delete={this.deleteApplication} key={application._id} {...application} />)}
+                    {this.state.applications.map(application => <ApplicationCard delete={this.deleteApplication} key={application._id} {...application} />)}
             </Row>  
 
 

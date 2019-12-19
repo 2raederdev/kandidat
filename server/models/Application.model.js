@@ -15,6 +15,7 @@ const applicationSchema = new Schema({
       type: Boolean,
       default: true
     },
+    imageUrl: String,
     status: {
         type: String,
         enum: ["CV Sent", "Interview", "Offer", "Hired", "Rejected", "Not interested"],

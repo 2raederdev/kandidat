@@ -43,30 +43,9 @@ class Dashboard extends React.Component {
                 <Container style={{ marginLeft: 20, marginRight: 20 }}>
 
                     {/* <Button className="navBar" variant="danger" onClick={this.handleShow}>Nueva candidatura</Button> */}
-
                     <Row>
-
-                        <Form onSubmit={this.handleSubmit}>
-                            <Row>
-                                <Col>
-                                    <Form.Group as={Col} controlId="formGridState">
-                                        <Form.Control as="select">
-                                            <option>Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                <Form.Group id="formGridCheckbox">
-                                    <Form.Check type="checkbox" label="Check me out" />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                        </Form>
-                    </Row>
-
                     <h1>Hola {this.state.loggedInUser.username}!!! Éste es tu dashboard!!!</h1>
-
+                    </Row>
                     <Row style={{ marginLeft: 20, marginRight: 20 }}>
                         <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
                             <StatusCol loggedInUser={this.state.loggedInUser} className="CV Sent" title="CV Sent"/>

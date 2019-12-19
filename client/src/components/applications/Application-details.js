@@ -71,11 +71,14 @@ class ApplicationDetail extends Component {
                 <section>
                     <Row>
                         <Col md={6}>
+                            <img src={this.state.application.imageUrl} alt={this.state.application.company}></img>
+                        </Col>
+                        <Col md={6}>
                             <h1>Posición: {this.state.application.position}</h1>
                             <p><strong>Empresa:</strong> {this.state.application.company}</p>
                             {interview}
                             {this.state.application.interviews && this.state.application.interviews.map(elm => <p key={elm._id}>Fecha: {elm.date.substr(0,10)} </p>)}
-
+            
                             
                             
                             <hr></hr>        

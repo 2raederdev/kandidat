@@ -4,6 +4,8 @@ import { Button, Form } from 'react-bootstrap'
 
 import Service from '../../service/Dashboard.service'
 import AuthService from '../../service/Auth.service'
+import FilesService from '../../service/Files.service'
+
 
 class ApplicationForm extends Component {
 
@@ -11,14 +13,18 @@ class ApplicationForm extends Component {
         super(props)
         this._service = new Service()
         this._authservice = new AuthService()
+        this._filesService = new FilesService()
         this.state = {
+            disabledButton: false,
+            buttonText: 'Crear candidatura',
             application: {
                 user: props.loggedInUser,
                 company: "",
                 position: "",
                 link: "",
                 active: "",
-                status: props.theStatus           }
+                status: props.theStatus,
+                imageUrl: ""           }
         }
     }
 
@@ -38,6 +44,23 @@ class ApplicationForm extends Component {
         this.setState({
             application: { ...this.state.application, [name]: value },
         })
+    }
+
+    handleFileUpload = e => {
+        this.setState({ disabledButton: true, buttonText: 'Subiendo imagen...' })
+
+        const uploadData = new FormData()
+        uploadData.append("imageUrl", e.target.files[0])
+        this._filesService.handleUpload(uploadData)
+            .then(response => {
+                console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
+                this.setState({
+                    disabledButton: false,
+                    buttonText: 'Crear candidatura',
+                    application: { ...this.state.application, imageUrl: response.data.secure_url }
+                })
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -69,6 +92,10 @@ class ApplicationForm extends Component {
                     <option value="Rejected">Rejected</option>
                     <option value="Not interested">Not interested</option>
                 </Form.Control> */}
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Imagen URL</Form.Label>
+                    <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload} />
                 </Form.Group>
                
                 <Button variant="danger" type="submit">Crear candidatura</Button>

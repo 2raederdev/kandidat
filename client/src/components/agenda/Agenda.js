@@ -1,9 +1,10 @@
-// 
+
 import React, { Component } from 'react'
 
 import Service from '../../service/Dashboard.service'
 import InterviewService from '../../service/Interview.service'
-// import { FixedSizeList } from "react-window";
+
+import ScrollArea from 'react-scrollbar'
 
 import "./../agenda/agenda.css"
 
@@ -12,7 +13,6 @@ import { Container, Col, Row, Button, Modal } from 'react-bootstrap'
 import WrappedMap from "./Map";
 
 import InterviewCard from './Interview-card'
-import TestInterviews from './Test'
 // import Calendar from './Calendar'
 import NewCalendar from './NewCalendar'
 // import Calendar2 from 'react-calendar'
@@ -71,34 +71,33 @@ class Agenda extends React.Component {
 
             <Container>
 
-            <Row>                    
-                <Button onClick={this.handleShow}>Ver Calendario</Button>
-            </Row>
+            
 
             <Row>
 
-
-                <Col md={7}>
-                    <Row>
-
-                        {this.state.interviews.map(interview => <Col md={5}> <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} /></Col>)}                          
-                    </Row>
-                </Col>  
-
                 <Col md={5}>
-                <div style={{ width: "100%", height: "85vh" }}>
+                <div style={{ width: "100%", height: "100vh" }}>
                     {this.state.initialized && (
                     <WrappedMap
                     loggedInUser={this.state.loggedInUser}
                     interview={this.state.interviews}
                     googleMapURL=
                     {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-                    loadingElement={<div style={{ height: "100%" }} />}
+                    loadingElement={<div style={{ height: "90%" }} />}
                     containerElement={<div style={{ height: "90%" }} />}
                     mapElement={<div style={{ height: "90%" }} />}
                     />)}
                 </div>
                 </Col>
+
+                <Col md={7}>
+                    <Row>                    
+                        <Button onClick={this.handleShow}>Ver Calendario</Button>
+                    </Row>
+                    <Row className="cardsList" >
+                            {this.state.interviews.map(interview => <Col md={6}> <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} /></Col>)}                          
+                    </Row>
+                </Col> 
             </Row>
 
             </Container>

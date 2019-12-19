@@ -14,6 +14,7 @@ require('./configs/session.config')(app)
 app.use('/api/dashboard', require('./routes/application.routes'))
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/interviews', require('./routes/interview.routes'))
+app.use('/api/files', require('./routes/files.routes'))
 
 app.use((req, res) => { res.sendFile(__dirname + "/public/index.html") })
 
