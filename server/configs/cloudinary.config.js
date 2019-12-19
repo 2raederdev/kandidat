@@ -10,7 +10,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
     cloudinary,
-    folder: 'qandidat',
+    folder: 'kandidat',
     allowedFormats: ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx'],
     filename: function (req, res, cb) {
         cb(null, res.originalname)
