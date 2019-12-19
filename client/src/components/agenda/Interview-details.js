@@ -26,10 +26,13 @@ class InterviewDetails extends Component {
 
     render() {
 
-        let dateShowed 
+        let dateShowed, addressShowed 
 
         dateShowed = this.state.interview.date ? this.state.interview.date.substr(0,10) : null
 
+        addressShowed = this.state.interview.type === "Presencial" ? 
+        <p className="mb-2 text-muted">Dirección: <small>{this.state.interview.address}</small></p>            
+        : null
 
         return (     
             
@@ -40,8 +43,7 @@ class InterviewDetails extends Component {
                     <Col md={6}>
                         <p className="mb-2 text-muted">Empresa:<small>{this.state.interview.company}</small></p>
                         <p className="mb-2 text-muted">Posición: <small>{this.state.interview.position}</small></p>            
-                        <p className="mb-2 text-muted">Tipo de entrevista: <small>{this.state.interview.type}</small></p>            
-                        <p className="mb-2 text-muted">Dirección: <small>{this.state.interview.address}</small></p>            
+                        {addressShowed}
                         <p className="mb-2 text-muted">Persona de contacto: <small>{this.state.interview.contactPerson}</small></p>            
                         <p className="mb-2 text-muted">Fecha: <small>{dateShowed}</small></p>            
                         <p className="mb-2 text-muted">Hora: <small>{this.state.interview.time}</small> </p>            

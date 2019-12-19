@@ -57,15 +57,11 @@ class ApplicationDetail extends Component {
 
 
     if(this.state.application.status === "Interview") {
-        console.log(this.state.application)
-        console.log(this.state.application.interviews)
         button = <Button variant="danger" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
     }
 
-    let uno = console.log(this.state.application.interviews && this.state.application.interviews)
-
-
-    if(this.state.application.interviews) interview = <p as="li" to="/agenda">Agenda</p>
+    if(this.state.application.interviews && this.state.application.interviews.length != 0) 
+        interview = <p><strong>Entrevistas:</strong></p> 
 
 
         return (
@@ -75,21 +71,21 @@ class ApplicationDetail extends Component {
                 <section>
                     <Row>
                         <Col md={6}>
-                            <h1>Posición {this.state.application.position}</h1>
+                            <h1>Posición: {this.state.application.position}</h1>
                             <p><strong>Empresa:</strong> {this.state.application.company}</p>
-                            <hr></hr>        
-                            {uno}
-                            {/* <p>( {this.state.application.interviews[0]}</p>                    */}
+                            {interview}
+                            {this.state.application.interviews && this.state.application.interviews.map(elm => <p key={elm._id}>Fecha: {elm.date.substr(0,10)} </p>)}
 
+                            
+                            
+                            <hr></hr>        
+                            
                             <p><small><a href={this.state.application.link} target="_blank">Link a la oferta</a></small></p> 
 
 
-                            <p>{interview}</p>
                             <Link to="/dashboard" className="btn btn-dark">Volver</Link>
                         </Col>
-                        {/* <Col md={{ span: 4, offset: 2 }}>
-                            <img src={this.state.coaster.imageUrl} alt={this.state.coaster.title}></img>
-                        </Col> */}
+                      
                     </Row>
 
 

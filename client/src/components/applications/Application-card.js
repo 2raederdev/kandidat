@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
@@ -53,7 +53,8 @@ class ApplicationCard extends Component {
                         to={`/application/${this.state.application.id}`}>
                         Detalles
                     </Link>
-                </Card.Link>                
+                </Card.Link>        
+                 
                 <Card.Link style={borrar} className="borrar" onClick={() => 
                     this.props.delete(this.state.application.id)
                     } >Borrar</Card.Link>                

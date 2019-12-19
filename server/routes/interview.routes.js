@@ -29,6 +29,7 @@ router.post('/newInterview', (req, res) => {
 
 router.get('/interviewslist', (req, res) => {
     Interview.find()
+        .populate("application")
         .then(allInterviews => res.json(allInterviews))
         .catch(err => console.log('DB error', err))
     })

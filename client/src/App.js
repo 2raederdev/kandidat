@@ -29,6 +29,8 @@ import Signup from './components/auth/Signup'
 import Login from './components/auth/Login'
 
 
+import './App.css'
+
 
 class App extends Component {
 
@@ -114,10 +116,11 @@ class App extends Component {
           </Switch>
 
           <CookieConsent location="bottom"
+          background="black"
             buttonText="Aceptar"
             cookieName="thisIsTheCookieName"
-            style={{ background: '#EE4266' }}
-            buttonStyle={{ acceptButton }}
+            style={{ background: '#EE4266', fontSize: "13px" }}
+            buttonStyle={{color: "#4e503b", fontSize: "13px" }}
             expires={30} 
             debug={true}
             containerClasses="alert-warning"
@@ -125,6 +128,7 @@ class App extends Component {
             acceptOnScrollPercentage={50}
             >
               KANDIDAT utilizaría este apartado para informarte del uso de cookies.
+
           </CookieConsent>
 
       </>

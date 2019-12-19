@@ -8,7 +8,6 @@ const User = require('../models/User.model')
 
 router.get('/dashboard', (req, res) => {
     Application.find()
-        .populate("Interview")
         .then(allApplications => res.json(allApplications))
         .catch(err => console.log('DB error', err))
     })
@@ -18,15 +17,15 @@ router.get('/dashboard', (req, res) => {
 
 router.get('/dashboardcvsent', (req, res) => {
     Application.find({ status: "CV Sent" })
-    .populate("interview")
-    .then(allApplications => {res.json( allApplications )
-    console.log(`La fiesta del verano: ${req.user}`)})
+    .then(allApplications => {
+        res.json( allApplications )
+        console.log(`La fiesta del verano: ${req.user}`)
+    })
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardinterview', (req, res) => {
     Application.find({ status: "Interview" })
-    .populate("contactPerson")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
@@ -39,21 +38,18 @@ router.get('/dashboardoffer', (req, res) => {
 
 router.get('/dashboardhired', (req, res) => {
     Application.find({ status: "Hired" })
-    .populate("interview")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardrejected', (req, res) => {
     Application.find({ status: "Rejected" })
-    .populate("interview")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
 
 router.get('/dashboardnotinterested', (req, res) => {
     Application.find({ status: "Not interested" })
-    .populate("interview")
     .then(allApplications => res.json( allApplications ))
     .catch(err => console.log('Error', err))
 })
@@ -89,6 +85,7 @@ router.post('/new', (req, res) => {
 router.get('/application/:id', (req, res) => {
     const applicationId = req.params.id
     Application.findById(applicationId)
+        .populate("interviews")
         .then(theApplication => res.json(theApplication))
         .catch(err => console.log('DB error', err))
 })

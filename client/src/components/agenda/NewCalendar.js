@@ -62,18 +62,10 @@ class MyCalendar extends Component {
     })
 
     this.setState({myInterviewsList: listCopy})
-    
-    console.log(`Hola Guille ${this.state.myInterviewsList}`)
-    
+        
   }
 
-  handleClick = () => {
-    // this.setState({showInterview: true})
-    if(this.state.showInterview == false ) {
-      this.updateMyInterviewsList()
-      this.setState({showInterview: true})
-  }}
-
+    componentDidMount = () => this.updateMyInterviewsList()
  
   render() {
   
@@ -82,9 +74,7 @@ class MyCalendar extends Component {
     return (
 
       <>
-      <Button onClick={this.handleClick}>Ver entrevistas</Button>
       <div
-      // style={{ height: "75vh", marginTop: "25px" }}
       style={{ height: "50vh" }}
       className="calendar-container">
 

@@ -1,23 +1,21 @@
-import React from 'react'
+// 
+import React, { Component } from 'react'
 
 import Service from '../../service/Dashboard.service'
 import InterviewService from '../../service/Interview.service'
+// import { FixedSizeList } from "react-window";
 
-import { Button, Modal } from 'react-bootstrap'
+import "./../agenda/agenda.css"
 
+import { Container, Col, Row, Button, Modal } from 'react-bootstrap'
 
 import WrappedMap from "./Map";
 
 import InterviewCard from './Interview-card'
+import TestInterviews from './Test'
 // import Calendar from './Calendar'
 import NewCalendar from './NewCalendar'
 // import Calendar2 from 'react-calendar'
-
-import './calendar.css'
-
-
-
-import { Col, Row } from 'react-bootstrap'
 
 class Agenda extends React.Component {
 
@@ -30,12 +28,12 @@ class Agenda extends React.Component {
             interviews: [],
             initialized: false,
             loggedInUser: props.loggedInUser,
-            
         }
-    }
+    } 
     
-    
-    
+
+
+
     componentDidMount = () => {
         this.updateInterviewsList()
         this.setState({ initialized: true})
@@ -46,7 +44,6 @@ class Agenda extends React.Component {
         this._interviewService.deleteInterview(id)
         this.updateInterviewsList()
     }
-
 
     updateInterviewsList = () => {
             this._interviewService.getAllInterviews()
@@ -62,32 +59,33 @@ class Agenda extends React.Component {
                 .catch(err => console.log("Error", err))     
     }
 
-
     handleShow = () => this.setState({ showModalWindow: true })
 
     handleClose = () => this.setState({ showModalWindow: false })
 
-
-
     render() {
-
-        let theUser = this.state.interviews.user
       
         return (
             <>
         <section>
 
-            {/* <Row>
-                <Calendar />
-                 <Calendar2/>
-            </Row> */}
+            <Container>
+
+            <Row>                    
+                <Button onClick={this.handleShow}>Ver Calendario</Button>
+            </Row>
 
             <Row>
-                <Col md={4}>
-                {this.state.interviews.map(interview => <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} />)}
+
+
+                <Col md={7}>
+                    <Row>
+
+                        {this.state.interviews.map(interview => <Col md={5}> <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} /></Col>)}                          
+                    </Row>
                 </Col>  
 
-                <Col md={4}>
+                <Col md={5}>
                 <div style={{ width: "100%", height: "85vh" }}>
                     {this.state.initialized && (
                     <WrappedMap
@@ -96,16 +94,14 @@ class Agenda extends React.Component {
                     googleMapURL=
                     {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
                     loadingElement={<div style={{ height: "100%" }} />}
-                    containerElement={<div style={{ height: "100%" }} />}
-                    mapElement={<div style={{ height: "100%" }} />}
+                    containerElement={<div style={{ height: "90%" }} />}
+                    mapElement={<div style={{ height: "90%" }} />}
                     />)}
                 </div>
                 </Col>
-                <Col md={4}>
-                    <Button onClick={this.handleShow}>Ver Calendario</Button>
-                </Col>  
             </Row>
 
+            </Container>
 
         </section>
             
@@ -121,6 +117,8 @@ class Agenda extends React.Component {
                     <Button onClick={this.handleClose}>Cerrar</Button>
             </Modal.Footer>
             </Modal> 
+
+
 
             </>
         )

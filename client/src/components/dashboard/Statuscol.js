@@ -116,14 +116,17 @@ class StatusCol extends React.Component {
 
 
     render() {
+
+
         return (
             <>
         <section>
 
             <p>{this.props.title}</p>
-            <Button variant="danger" onClick={this.handleShow}>Nueva candidatura</Button>
+            
             <Row className={this.props.className}>
-            {this.state.applications.map(application => <ApplicationCard delete={this.deleteApplication} key={application._id} {...application} />)}
+                <Button variant="danger" onClick={this.handleShow}>Nueva candidatura</Button>
+                {this.state.applications.map(application => <ApplicationCard delete={this.deleteApplication} key={application._id} {...application} />)}
             </Row>  
 
 

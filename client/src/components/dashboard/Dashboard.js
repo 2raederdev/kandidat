@@ -1,7 +1,7 @@
 import React from 'react'
 import Service from '../../service/Dashboard.service'
 
-import { Container, Col, Row, Button, Modal } from 'react-bootstrap'
+import { Container, Col, Row, Form } from 'react-bootstrap'
 
 import StatusCol from './Statuscol'
 import ApplicationForm from '../applications/Application-form'
@@ -44,6 +44,26 @@ class Dashboard extends React.Component {
 
                     {/* <Button className="navBar" variant="danger" onClick={this.handleShow}>Nueva candidatura</Button> */}
 
+                    <Row>
+
+                        <Form onSubmit={this.handleSubmit}>
+                            <Row>
+                                <Col>
+                                    <Form.Group as={Col} controlId="formGridState">
+                                        <Form.Control as="select">
+                                            <option>Choose...</option>
+                                            <option>...</option>
+                                        </Form.Control>
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                <Form.Group id="formGridCheckbox">
+                                    <Form.Check type="checkbox" label="Check me out" />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Row>
 
                     <h1>Hola {this.state.loggedInUser.username}!!! Éste es tu dashboard!!!</h1>
 
