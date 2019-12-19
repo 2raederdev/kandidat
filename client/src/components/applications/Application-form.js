@@ -53,7 +53,7 @@ class ApplicationForm extends Component {
         uploadData.append("imageUrl", e.target.files[0])
         this._filesService.handleUpload(uploadData)
             .then(response => {
-                console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
+                console.log('Subida de archivo finalizada! La URL de Cloudinary es: ', response.data.secure_url)
                 this.setState({
                     disabledButton: false,
                     buttonText: 'Crear candidatura',
@@ -72,15 +72,15 @@ class ApplicationForm extends Component {
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label>Empresa</Form.Label>
-                    <Form.Control type="text" name="company" onChange={this.handleInputChange} value={this.state.company} />
+                    <Form.Control required={true} type="text" name="company" onChange={this.handleInputChange} value={this.state.company} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Posición</Form.Label>
-                    <Form.Control type="text" name="position" onChange={this.handleInputChange} value={this.state.position} />
+                    <Form.Control required={true} type="text" name="position" onChange={this.handleInputChange} value={this.state.position} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Link a la oferta</Form.Label>
-                    <Form.Control type="text" name="link" onChange={this.handleInputChange} value={this.state.link} />
+                    <Form.Control required={true} type="text" name="link" onChange={this.handleInputChange} value={this.state.link} />
                 </Form.Group>
                 <Form.Group>
                 {/* <Form.Label>Estado</Form.Label>
@@ -95,10 +95,10 @@ class ApplicationForm extends Component {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Imagen URL</Form.Label>
-                    <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload} />
+                    <Form.Control required={true} name="imageUrl" type="file" onChange={this.handleFileUpload} />
                 </Form.Group>
                
-                <Button variant="danger" type="submit">Crear candidatura</Button>
+                <Button variant="danger" disable={this.state.disabledButton} type="submit">{this.state.buttonText}</Button>
 
             </Form>
         )

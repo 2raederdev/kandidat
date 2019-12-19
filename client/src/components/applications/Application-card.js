@@ -24,6 +24,7 @@ class ApplicationCard extends Component {
         }
     }
 
+
     render(){
 
 
@@ -41,6 +42,13 @@ class ApplicationCard extends Component {
 
                 <Card.Title>{this.state.application.position}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{this.state.application.company} </Card.Subtitle>
+
+                <Link to={`/application/${this.state.application.id}`} className="btn btn-dark">Detalles</Link>
+                
+                <Button onClick={() => 
+                    this.props.delete(this.state.application.id)
+                    } variant="dark">Borrar</Button>
+
 
                 <Card.Link 
                     as="li"

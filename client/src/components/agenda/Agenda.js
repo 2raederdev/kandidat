@@ -31,9 +31,6 @@ class Agenda extends React.Component {
         }
     } 
     
-
-
-
     componentDidMount = () => {
         this.updateInterviewsList()
         this.setState({ initialized: true})
@@ -61,7 +58,9 @@ class Agenda extends React.Component {
 
     handleShow = () => this.setState({ showModalWindow: true })
 
-    handleClose = () => this.setState({ showModalWindow: false })
+    handleClose = () => {
+        this.setState({ showModalWindow: false }) 
+    }
 
     render() {
       

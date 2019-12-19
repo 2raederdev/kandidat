@@ -107,7 +107,6 @@ class Map extends Component {
             <>
         <h4>Aquí tienes una entrevista.</h4>
               <p>Busca en la lista para saber más</p>          
-              <p>{this.state.address.data}</p>          
           </>
           </InfoWindow>
         )} 

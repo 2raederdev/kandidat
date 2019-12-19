@@ -28,7 +28,10 @@ class ApplicationDetail extends Component {
     
 
     handleInterviewShow = () => this.setState({ showModalInterviewForm: true })
-    handleInterviewClose = () =>  this.setState({ showModalInterviewForm: false })
+    handleInterviewClose = () => { 
+        this.setState({ showModalInterviewForm: false })
+        this.details()
+}
 
     componentDidMount = () => {
         this.details()}
@@ -40,9 +43,7 @@ class ApplicationDetail extends Component {
         
             .then(theApplication => {
                 this.setState({ application: theApplication.data })
-                console.log(this.state.application.interviews)
-                this.state.application.interviews.map(elm => console.log(elm))
-
+                // this.state.application.interviews.map(elm => console.log(elm))
             })
             .catch(err => console.log(err))
     }
@@ -77,8 +78,8 @@ class ApplicationDetail extends Component {
                             <h1>Posición: {this.state.application.position}</h1>
                             <p><strong>Empresa:</strong> {this.state.application.company}</p>
                             {interview}
-                            {this.state.application.interviews && this.state.application.interviews.map(elm => <p key={elm._id}>Fecha: {elm.date.substr(0,10)} </p>)}
-            
+                            {this.state.application.interviews && this.state.application.interviews.map(elm => <p key={elm._id}>Fecha: <small>{elm.date.substr(0,10)}</small> - Hora: <small>{elm.time}</small>  </p>)}
+                            
                             
                             
                             <hr></hr>        

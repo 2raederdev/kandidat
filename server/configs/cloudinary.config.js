@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = cloudinaryStorage({
     cloudinary,
     folder: 'qandidat',
-    allowedFormats: ['jpg', 'png', 'pdf', 'doc', 'docx'],
+    allowedFormats: ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx'],
     filename: function (req, res, cb) {
         cb(null, res.originalname)
     }
