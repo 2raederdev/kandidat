@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Form, Container } from 'react-bootstrap'
+import { Button, Form, Container, Col, Toast } from 'react-bootstrap'
 
 import Service from '../../service/Auth.service'
+
+import './auth.css'
 
 class SignupForm extends Component {
 
@@ -9,6 +11,8 @@ class SignupForm extends Component {
         super(props)
         this._service = new Service()
         this.state = { 
+            showToast: false,
+            toastText: '',
             username: '', 
             password: '',
             showPassword: false,
@@ -25,8 +29,11 @@ class SignupForm extends Component {
                 this.props.history.push(`/dashboard`)            // REDIRECCIONAMIENTO
                 // this.props.history.push(`/dashboard/${theNewUser.data._id}`)            // REDIRECCIONAMIENTO
             })
-            .catch(err => console.log(err.response.data.message))
+            .catch(err => this.handleToastOpen(err.response.data.message))
     }
+
+    handleToastClose = () => this.setState({ showToast: false, toastText: '' })
+    handleToastOpen = text => this.setState({ showToast: true, toastText: text })
 
 
     handleInputChange = e => {
@@ -38,6 +45,8 @@ class SignupForm extends Component {
 
 
     render() {
+
+        let seePassword = {fontSize: 0.8+'em'}
 
         let inputType
 
@@ -61,25 +70,50 @@ class SignupForm extends Component {
 
 
         return (
-            <Container>
+            <Container className="signup-form">
+
+                <Col sm={{ span: 8, offset: 2 }} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
+
+
+                <Form onSubmit={this.handleSubmit} className="text-center">
 
                 <h1>Registro</h1>
 
-                <Form onSubmit={this.handleSubmit}>
+
                     <Form.Group>
                         <Form.Label>Usuario</Form.Label>
-                        <Form.Control type="text" name="username" onChange={this.handleInputChange} value={this.state.username} />
+                        <Form.Control  type="text" name="username" onChange={this.handleInputChange} value={this.state.username} />
                     </Form.Group>
                     
                     {inputType}
 
                     <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check onChange={this.handleCheckboxChange} type="checkbox" label="Ver contraseña" />
+                        <Form.Check onChange={this.handleCheckboxChange} style={seePassword} type="checkbox" label="Ver contraseña" />
                     </Form.Group>
 
 
-                    <Button variant="dark" type="submit">Registrarme</Button>
+                    <Button variant="outline-warning" type="submit">Registrarme</Button>
                 </Form>
+
+                </Col>  
+
+                <Toast
+                    onClose={this.handleToastClose}
+                    show={this.state.showToast}
+                    delay={3000}
+                    autohide
+                    style={{
+                        position: 'fixed',
+                        textAlign: 'center',
+                        right: '10px',
+                        bottom: '10px',
+                        minWidth: '250px'
+                    }}>
+                    <Toast.Header>
+                        <strong className="mr-auto">Error en el registro</strong>
+                    </Toast.Header>
+                    <Toast.Body>{this.state.toastText}</Toast.Body>
+                </Toast>
 
             </Container>
         )

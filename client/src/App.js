@@ -3,6 +3,8 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Service from './service/Auth.service'
 
+import './App.css'
+
 
 /* ---------  PAGE COMPONENTS --------- */
 
@@ -19,7 +21,6 @@ import InterviewForm from './components/agenda/Interview-form'
 /* ---------  UI COMPONENTS --------- */
 
 import Navbar from './components/ui/Navbar'
-import CookieConsent from "react-cookie-consent";
 
 
 
@@ -36,8 +37,11 @@ class App extends Component {
 
   constructor() {
     super()
-    this.state = { loggedInUser: null }
     this._service = new Service()
+    this.state = { 
+      loggedInUser: null,
+    }
+
   }
 
   componentDidMount = () => console.log(this.state.loggedInUser)
@@ -115,21 +119,9 @@ class App extends Component {
 
           </Switch>
 
-          <CookieConsent location="bottom"
-          background="black"
-            buttonText="Aceptar"
-            cookieName="thisIsTheCookieName"
-            style={{ background: '#EE4266', fontSize: "13px" }}
-            buttonStyle={{color: "#4e503b", fontSize: "13px" }}
-            expires={30} 
-            debug={true}
-            containerClasses="alert-warning"
-            acceptOnScroll={true}
-            acceptOnScrollPercentage={50}
-            >
-              KANDIDAT utilizaría este apartado para informarte del uso de cookies.
-
-          </CookieConsent>
+          {/* <footer className="footer">
+                <h3>Kandidat</h3>
+          </footer> */}
 
       </>
 

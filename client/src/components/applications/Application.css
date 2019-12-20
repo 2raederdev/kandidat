@@ -1,4 +1,7 @@
-  .detallesLink:hover {
+
+
+
+.detallesLink:hover {
     color: #FF9B00;
 }
 
@@ -6,4 +9,141 @@
   color: #FF9B00;
   text-decoration: none;
   list-style-type: none;
+}
+
+.cardText{
+  text-align: center;
+}
+
+.applicationDetails h1 {
+  text-align: center;
+  margin: 4vh 0 8vh 0;
+}
+
+.applicationDetails img{
+  max-width: 40%;
+  height: 70%;
+  margin-top: 4vh;
+  object-fit: content;
+}
+
+.entrevistas {
+  margin-top: 6vh
+}
+
+.applicationDetails .theLink {
+  color: #FF9B00;
+  text-align: center;
+}
+
+.applicationDetails .theLink:hover {
+  color: #FF9B00;
+  text-align: center;
+  margin: 4vh 0 8vh 0;
+  text-decoration-line: none;
+}
+
+.applicationDetails .btn {
+  margin: 8vh 2vw;
+  background-color: #FF9B00;
+  border-color: #FF9B00;
+  font-size: 16px;
+  min-width: 140px;
+  color: white;
+  outline: none !important;
+  content: “”;
+  width: 25%;
+}
+
+.applicationDetails .btn:hover {
+  text-decoration: none;
+  background-color: white;
+  color: #FF9B00;
+  border-color: #FF9B00;
+  }
+
+.applicationDetails .btn:last-child {
+  margin: 8vh 2vw;
+  background-color: white;
+  border-color: #FF9B00;
+  font-size: 16px;
+  min-width: 140px;
+  color: #FF9B00;
+  outline: none !important;
+  content: “”;
+  width: 25%;
+}
+
+.applicationDetails .btn:last-child:hover {
+  text-decoration: none;
+  background-color: #FF9B00;
+  color: white;
+  border-color: #FF9B00;
+  }
+
+  .applicationCard {
+    text-align: center
+  }
+
+  .applicationCard .btn {
+    background-color: #FF9B00;
+    border-color: #FF9B00;
+    color: white;
+    outline: none !important;
+    content: “”;
+    display:block;
+  }
+  
+  .applicationCard .btn:hover {
+    text-decoration: none;
+    background-color: white;
+    color: #FF9B00;
+    border-color: #FF9B00;
+    }
+
+    .applicationCard .btn:last-Child {
+      background-color: white;
+      border-color: #FF9B00;
+      color: #FF9B00;
+      outline: none !important;
+      content: “”;
+      display:block;
+      margin: 1vh auto 0 auto ;
+    }
+    
+    .applicationCard .btn:last-Child:hover {
+      text-decoration: none;
+      background-color: #FF9B00;
+      color: white;
+      border-color: #FF9B00;
+      }
+
+      .statusCol {
+        background-color: white;
+        border-color: #1C1259;
+        color: #1C1259;
+        outline: none !important;
+        content: “”;
+        display:block;
+      }
+      
+      .statusCol {
+        text-decoration: none;
+        background-color: #1C1259;
+        color: white;
+        border-color: #1C1259;
+        }
+
+        .theImage10 {
+          z-index: -1200;
+          position: absolute;
+          left: 55vw;
+          top: 40vh;
+          width: 40%
+        }
+
+.dashboard h1 {
+  margin: 5vh 0;
+  text-align: center;
+
 }

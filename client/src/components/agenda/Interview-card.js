@@ -6,6 +6,8 @@ import { Card,Button, Modal, Container, Row, Col } from 'react-bootstrap'
 import InterviewDetails from './Interview-details'
 import EditInterview from './Interview-edit'
 
+import './agenda.css'
+
 
 class InterviewCard extends Component {
 
@@ -60,22 +62,25 @@ class InterviewCard extends Component {
             <Row>
                 <Col md={6}>
                     <Card style={{ width: '15rem' }}>
-                        <Card.Body>
+                        <Card.Body style={{ paddingBottom: '0' }}>
 
-                            <Card.Title>Entrevista</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Empresa: {this.state.interview.company} </Card.Subtitle>            
-                            <Card.Subtitle className="mb-2 text-muted">Posición: {this.state.interview.position} </Card.Subtitle>                     
+                            <Card.Subtitle className="mb-2 text-muted cardText"><p>{this.state.interview.company}</p></Card.Subtitle>            
+                            <Card.Subtitle className="mb-2 text-muted cardText"><p>{this.state.interview.position}</p></Card.Subtitle>                     
 
                         </Card.Body>
 
-                        <Button variant="danger" onClick={this.handleShow} >
-                            Ver detalles
+                        <div className="interviewDetails">
+
+                        <Button  onClick={this.handleShow} >
+                            Detalles
                         </Button>
 
 
                         <Button variant="light" onClick={this.handleConfirmShow}>
-                            Borrar entrevista
+                            Borrar
                         </Button>
+
+                        </div>
 
                     </Card>
                 </Col>

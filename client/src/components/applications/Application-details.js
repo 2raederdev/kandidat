@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Service from '../../service/Dashboard.service'
 import InterviewService from '../../service/Interview.service'
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import EditApplication from '../applications/Application-edit'
 import InterviewForm from '../agenda/Interview-form'
+
+import './Application.css'
 
 
 
@@ -58,47 +60,59 @@ class ApplicationDetail extends Component {
 
 
     if(this.state.application.status === "Interview") {
-        button = <Button variant="danger" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
+        button = <Button className="button03 button" onClick={this.handleInterviewShow} >Añade una entrevista</Button> 
     }
 
     if(this.state.application.interviews && this.state.application.interviews.length != 0) 
-        interview = <p><strong>Entrevistas:</strong></p> 
+        interview = <p className="entrevistas">Entrevistas:</p> 
 
 
         return (
 
             <>
-            <Container>
+
+            <Container className="applicationDetails">
                 <section>
+                    <h1>Te has inscrito en una oferta</h1>
+
                     <Row>
                         <Col md={6}>
                             <img src={this.state.application.imageUrl} alt={this.state.application.company}></img>
                         </Col>
                         <Col md={6}>
-                            <h1>Posición: {this.state.application.position}</h1>
-                            <p><strong>Empresa:</strong> {this.state.application.company}</p>
-                            {interview}
-                            {this.state.application.interviews && this.state.application.interviews.map(elm => <p key={elm._id}>Fecha: <small>{elm.date.substr(0,10)}</small> - Hora: <small>{elm.time}</small>  </p>)}
-                            
-                            
-                            
-                            <hr></hr>        
-                            
-                            <p><small><a href={this.state.application.link} target="_blank">Link a la oferta</a></small></p> 
 
-
-                            <Link to="/dashboard" className="btn btn-dark">Volver</Link>
+                        <Card style={{ width: '18rem', height: '25rem' }} className="cardText">
+                            <Card.Body>
+                                <Card.Title>{this.state.application.position}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">{this.state.application.company}</Card.Subtitle>
+                                <Card.Text>
+                                    {interview}
+                                        {this.state.application.interviews && this.state.application.interviews.map(elm => <p key={elm._id}>Fecha: <small>{elm.date.substr(0,10)}</small> - Hora: <small>{elm.time}</small>  </p>)}
+                                                            
+                                    <p><small><a className="theLink" href={this.state.application.link} target="_blank">Link a la oferta</a></small></p> 
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                          
                         </Col>
                       
                     </Row>
 
+                    <Row>
+
+                        <Col lg={12}>
+
+                        <Button className="button01 button" as={Link} to='/dashboard' >Volver</Button>               
+                        <Button className="button02 button" onClick={this.handleShow} >Edita candidatura</Button>               
+                        {button}
+
+                        </Col>
+
+                    </Row>
 
                 </section>
 
-                <Button variant="light" onClick={this.handleShow} >Edita candidatura</Button>
-                
-                {button}
-
+                                
 
 
 

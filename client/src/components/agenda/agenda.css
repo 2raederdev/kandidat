@@ -1,6 +1,144 @@
-.cardsList {
-    
-    max-height: 80vh;
-    overflow-y: scroll;
-    
+.agenda{
+  padding: 5vh 0;
+
+}
+
+.theImage01 {
+  z-index: -1200;
+  position: absolute;
+  right: 87vw;
+  top: 70vh;
+  width: 12%
+}
+
+.theImage02 {
+  z-index: -1200;
+  position: absolute;
+  left: 84vw;
+  top: 16vh;
+  width: 14%
+}
+
+.theImage03 {
+  z-index: -1200;
+  position: absolute;
+  right: 87vw;
+  top: 14vh;
+  width: 9%
+}
+
+.showCalendar {
+  margin-bottom: 5vh;
+  text-align: center;
+}
+
+.showCalendar .btn {
+    background-color: #FF9B00;
+    position: right;
+    border-color: #FF9B00;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 140px;
+    color: white;
+    outline: none !important;
+    content: “”;
+    width: 25%;
   }
+
+  .showCalendar .btn:hover {
+    text-decoration: none;
+    background-color: white;
+    color: #FF9B00;
+    border-color: #FF9B00;
+  }
+
+  .showCalendar .btn:visited {
+    text-decoration: none;
+    background-color: Transparent;
+    color: #FF9B00;
+    border-color: #FF9B00;
+}
+
+.showCalendar h3 {
+  margin: 2vh 0;
+}
+
+.theMap {
+  box-shadow: 0px 2px #1C1259;
+  border-radius: 5px;
+
+}
+
+.cardsList {
+    max-height: 44vh;
+    overflow-y: scroll;
+    text-align: center;
+  }
+
+.colCards {
+  text-align: center;
+  display: block;
+  margin: 0 auto
+}
+
+.calendarModal {
+    width: 90vw;   /* Occupy the 90% of the screen width */
+    max-width: 90vw;  
+  }
+
+  .noButton a{
+    text-decoration-style: none;
+    text-decoration-line: none;
+    color: white;
+  }
+
+  .interviewDetails {
+    text-align: center;
+    padding-bottom: 0 
+  } 
+
+.cardText {
+  text-align: center;
+    padding-bottom: 0 
+}
+
+.cardText p {
+  color: #1C1259
+}
+
+  .interviewDetails .btn:first-child {
+    background-color: white;
+    border-color: #FF9B00;
+    font-size: 16px;
+    min-width: 140px;
+    color: #FF9B00;
+    outline: none !important;
+    content: “”;
+    width: 25%;
+  }
+
+.interviewDetails .btn:first-child:hover {
+  text-decoration: none;
+  background-color: #FF9B00;
+  color: white;
+  border-color: #FF9B00;
+}
+
+.interviewDetails .btn:last-child {
+  background-color: white;
+  border-color: #a6a6e3;
+  font-size: 16px;
+  min-width: 140px;
+  color: #a6a6e3;
+  outline: none !important;
+  content: “”;
+  width: 25%;
+  margin: 1vh 0 2vh 0;
+}
+
+.interviewDetails .btn:last-child:hover {
+text-decoration: none;
+background-color: #a6a6e3;
+color: white;
+border-color: #a6a6e3;
+}

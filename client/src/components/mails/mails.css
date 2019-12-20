@@ -1,0 +1,80 @@
+body {
+    background-color: #CACAEA
+}
+
+.sendMail-form {
+    margin: 0 auto;
+    padding: 30px 0;
+  }
+  .sendMail-form h1 {
+    color: #1C1259;
+    position: relative;
+    text-align: center;
+    margin-bottom: 4vh;
+  }
+  
+  .sendMail-form form {
+    color: #1C1259;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  .sendMail-form h1:before,
+  .sendMail-form h1:after {
+    content: “”;
+    height: 2px;
+    width: 25%;
+    background: #D4D4D4;
+    position: absolute;
+    top: 50%;
+  }
+  .sendMail-form h1:before {
+    left: 0;
+  }
+  .sendMail-form h1:after {
+    right: 0;
+  }
+  .sendMail-form .btn {
+    background-color: #FF9B00;
+    position: right;
+    border-color: #FF9B00;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 140px;
+    color: white;
+    outline: none !important;
+    content: “”;
+    width: 25%;
+  }
+
+  .sendMail-form .btn:hover {
+    text-decoration: none;
+    background-color: Transparent;
+    color: #FF9B00;
+    border-color: #FF9B00;
+  }
+
+  .sendMail-form .btn:visited {
+    text-decoration: none;
+    background-color: Transparent;
+    color: #FF9B00;
+    border-color: #FF9B00;
+  }
+
+  .sendMail-form form a:hover {
+    text-decoration: underline;
+  }
+  
+  img {
+    display: block;
+    margin: 0 auto;
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.p-text {
+    text-align: center
+}

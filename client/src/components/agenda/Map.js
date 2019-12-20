@@ -12,6 +12,9 @@ import {
   InfoWindow
 } from "react-google-maps"
 
+import MapStyles from "./MapStyles";
+
+
 import Geocode from "react-geocode";
 
 Geocode.setApiKey("AIzaSyC0Hl0lxEoQa6Oy0mdrsk5eu4LZjGX4szU");
@@ -76,8 +79,9 @@ class Map extends Component {
     return (
 
         <GoogleMap
-        defaultZoom={10}
+        defaultZoom={11}
         defaultCenter={{ lat: 40.4165, lng: -3.70256 }}
+        defaultOptions={{ styles: MapStyles }}
       >
 
         {this.state.addresses.map((elm, idx) => (
@@ -90,7 +94,7 @@ class Map extends Component {
                 //  this.handleToggleOpen(elm)
                 }}
                 icon={{
-                  url: "https://res.cloudinary.com/tworaederdev/image/upload/v1576434174/qandidat/kandidatmarker_rvply5.png",
+                  url: "https://res.cloudinary.com/tworaederdev/image/upload/v1576829222/kandidat/kandidatmarker02_wftpvu.png",
                   scaledSize: new google.maps.Size(31, 43)
                 }}
             ></Marker>

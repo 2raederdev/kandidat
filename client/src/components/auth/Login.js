@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Form, Container, Toast } from 'react-bootstrap'
+import { Button, Form, Container, Col, Toast } from 'react-bootstrap'
 
 import Service from '../../service/Auth.service'
+
+import './auth.css'
 
 class LoginForm extends Component {
 
@@ -70,11 +72,12 @@ class LoginForm extends Component {
         }
 
         return (
-            <Container>
+            <Container className="signup-form" >
 
+                <Col sm={{ span: 8, offset: 2 }} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
+
+                <Form onSubmit={this.handleSubmit} className="text-center">
                 <h1>Iniciar sesión</h1>
-
-                <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Label>Usuario</Form.Label>
                         <Form.Control type="text" name="username" onChange={this.handleInputChange} value={this.state.username} />
@@ -84,8 +87,10 @@ class LoginForm extends Component {
                     <Form.Group controlId="formBasicCheckbox">
                         <Form.Check onChange={this.handleCheckboxChange} type="checkbox" label="Ver contraseña" />
                     </Form.Group>
-                    <Button variant="dark" type="submit">Iniciar sesión</Button>
+                    <Button variant="outline-warning" type="submit">Iniciar sesión</Button>
                 </Form>
+
+                </Col>
 
                 <Toast
                     onClose={this.handleToastClose}
@@ -99,8 +104,7 @@ class LoginForm extends Component {
                         minWidth: '250px'
                     }}>
                     <Toast.Header>
-                        <strong className="mr-auto">Error</strong>
-                        <small>Gestor de sesiones</small>
+                        <strong className="mr-auto">Error en el inicio de sesión</strong>
                     </Toast.Header>
                     <Toast.Body>{this.state.toastText}</Toast.Body>
                 </Toast>

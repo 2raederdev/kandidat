@@ -3,9 +3,9 @@ import React, { Component } from "react"
 
 import InterviewService from "../../service/Interview.service"
 
-import { Container, Form, Button } from 'react-bootstrap'
+import { Container, Form, Button, Col, Row } from 'react-bootstrap'
 
-// import Button from './sendMail'
+import './company.css'
 
 
 class Searchbar extends Component {
@@ -32,17 +32,30 @@ class Searchbar extends Component {
 
       return (
 
-        <Form>
+        <div >
 
-        <Form.Group>
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control placeholder="Por ejemplo: Ironhack" type="text" onChange={this.onChangeName.bind(this)}/>
-        </Form.Group>
+          <Form >
 
-        <Button target="_blank" email={this.state.inputEmail} onClick={this.searchGoogle.bind(this)}>Buscar empresa</Button>
-        
-        </Form>
+            <Col >
 
+            <Row>
+
+                <Col sm={6} md={8} lg={10}>
+                  <Form.Group>
+                      <Form.Control placeholder="Nombre de la empresa" type="text" onChange={this.onChangeName.bind(this)}/>
+                  </Form.Group>
+                </Col>
+                <Col sm={6} md={4} lg={2}>
+                <Button column sm="3" variant="outline-warning" target="_blank" email={this.state.inputEmail} onClick={this.searchGoogle.bind(this)}>Buscar empresa</Button>
+                </Col>
+
+            </Row>
+            
+            </Col>
+
+          </Form>
+
+        </div>
 
   );
 }

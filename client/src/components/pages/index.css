@@ -2,7 +2,139 @@ h1, h2, h3 {
     font-weight: 100;
 }
 
-section{
-    margin-top: 20px;
+.section1 {
+    text-align: center;
+    padding-bottom: 5vh
+}
+
+.section1 img {
+    display: block;
+    margin: 0 auto;
+    /* height: 60%; */
+max-height: 500px;
+max-width: 500px;
+object-fit: contain;
+}
+
+.section1 {
+        background-color: #CACAEA;
+        text-align: center
+}
+
+.section1 img {
+    display: block;
+    margin: 0 auto;
+    /* height: 60%; */
+max-height: 500px;
+max-width: 500px;
+object-fit: contain;
+
+}
+
+.section2 {
+    text-align: center;
+    background-color: white;
+    padding: 10vh 0;
+}
+
+.section2 img {
+    display: block;
+    margin: 0 auto;
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.section2 h3 {
+    margin-top: 15vh;
+    color: #1C1259
+}
+
+.section2 p {
+    color: #1C1259
+}
+
+.section3 {
+    text-align: center;
+    background-color: white;
+    padding: 10vh 0;
+}
+
+.section3 img {
+    display: block;
+    margin: 0 auto;
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.section3 h3 {
+    margin-top: 10vh;
+}
+
+.section3 p {
+    color: #1C1259
+}
+
+.section4 {
+    text-align: center;
+    background-color: #FFD28C;
+    padding: 5vh 0;
+}
+
+.section4 img {
+    display: block;
+    margin: 0 auto;
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.section4 h3 {
+    margin-top: 15vh;
+    color: #1C1259
+}
+
+.section4 p {
+    color: #1C1259
+}
+
+.section5 {
+    text-align: center;
+    background-color: #DDE4F2;
+    padding: 5vh 0;
+}
+
+.section5 img {
+    display: block;
+    margin: 0 auto;
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.section5 h3 {
+    margin-top: 15vh;
+    color: #1C1259
+}
+
+.section5 p {
+    color: #1C1259
+}
+
+/* @media (max-width: 900px) {
+    .carousel {
+      width:auto;
+      height:auto;
+    }
+} */
+
+footer {
+    background-color: white;
+    color:  #FF9B00;
+    height: 60px;
+    position: absolute;
+    padding: 1rem;
     text-align: center;
 }
+

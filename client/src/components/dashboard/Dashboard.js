@@ -36,50 +36,39 @@ class Dashboard extends React.Component {
 
             <>
 
+<div>
+                    <img className="theImage10" src="https://res.cloudinary.com/tworaederdev/image/upload/v1576782750/kandidat/Jobs_kb5txc.png"/>
+                </div>
 
-            <section>
-                {/* {false ? "es true" : <p>no es true"</p>} */}
+                <Container >
 
-                <Container style={{ marginLeft: 20, marginRight: 20 }}>
-
-                    {/* <Button className="navBar" variant="danger" onClick={this.handleShow}>Nueva candidatura</Button> */}
-                    <Row>
+                    <Row className="dashboard">
                     <h1>Hola {this.state.loggedInUser.username}!!! Éste es tu dashboard!!!</h1>
                     </Row>
-                    <Row style={{ marginLeft: 20, marginRight: 20 }}>
-                        <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol loggedInUser={this.state.loggedInUser} className="CV Sent" title="CV Sent"/>
+                    <Row>
+                        <Col className="cols" style={{marginLeft:5}} lg={2} md={6} sm={12}>
+                            <StatusCol className="cols" loggedInUser={this.state.loggedInUser} className="CV Sent" title="CV Sent"/>
                         </Col>
-                        <Col style={{marginLeft:20}}lg={2} md={6} sm={12}>
+                        <Col className="cols" lg={2} md={6} sm={12}>
                             <StatusCol loggedInUser={this.state.loggedInUser} className="Interview" title="Interview"/>
                         </Col>
-                        <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol loggedInUser={this.state.loggedInUser} className="Offer" title="Offer"/>
+                        <Col className="cols" lg={2} md={6} sm={12}>
+                            <StatusCol className="cols" loggedInUser={this.state.loggedInUser} className="Offer" title="Offer"/>
                         </Col>
-                        <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
+                        <Col className="cols" lg={2} md={6} sm={12}>
                             <StatusCol loggedInUser={this.state.loggedInUser} className="Hired" title="Hired"/>
                         </Col>
-                        <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol loggedInUser={this.state.loggedInUser} className="Rejected" title="Rejected" />
+                        <Col className="cols" lg={2} md={6} sm={12}>
+                            <StatusCol className="cols" loggedInUser={this.state.loggedInUser} className="Rejected" title="Rejected" />
                         </Col>
-                        <Col style={{marginLeft:20}} lg={2} md={6} sm={12}>
-                            <StatusCol loggedInUser={this.state.loggedInUser} className="Not interested" title="No interest" />
+                        <Col className="cols" lg={2} md={6} sm={12}>
+                            <StatusCol className="cols" loggedInUser={this.state.loggedInUser} className="Not interested" title="No interest" />
                         </Col>
                         
                     </Row>
- 
+
                 </Container>
-
-            </section>
-
-            {/* <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>Nueva candidatura</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <ApplicationForm closeModalWindow={this.handleClose} loggedInUser={this.state.loggedInUser} updateTheApplications={this.updateApplicationsList} />
-            </Modal.Body>
-            </Modal> */}
+ 
 
         </>
 

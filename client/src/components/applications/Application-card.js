@@ -37,20 +37,22 @@ class ApplicationCard extends Component {
 
     return (
         <>
-        <Card className="applicationCard" style={{ width: '11rem' }}>
+        <Card className="applicationCard" style={{ width: '10rem' }}>
             <Card.Body>
 
                 <Card.Title>{this.state.application.position}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{this.state.application.company} </Card.Subtitle>
+               
+<div className="applicationCard">
 
-                <Link to={`/application/${this.state.application.id}`} className="btn btn-dark">Detalles</Link>
-                
+                <Button className="button01 button" as={Link} to={`/application/${this.state.application.id}`} >Detalles</Button>               
+
                 <Button onClick={() => 
                     this.props.delete(this.state.application.id)
-                    } variant="dark">Borrar</Button>
+                    } className="button01 button">Borrar</Button>
+</div>
 
-
-                <Card.Link 
+                {/* <Card.Link 
                     as="li"
                     loggedInUser={this.state.loggedInUser} 
                     className="detallesLink" 
@@ -65,7 +67,7 @@ class ApplicationCard extends Component {
                  
                 <Card.Link style={borrar} className="borrar" onClick={() => 
                     this.props.delete(this.state.application.id)
-                    } >Borrar</Card.Link>                
+                    } >Borrar</Card.Link>                 */}
 
 
             </Card.Body>

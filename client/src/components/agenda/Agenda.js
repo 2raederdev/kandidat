@@ -63,47 +63,69 @@ class Agenda extends React.Component {
     }
 
     render() {
-      
+     
         return (
             <>
-        <section>
+            <Container className="agenda">
 
-            <Container>
-
-            
-
-            <Row>
-
-                <Col md={5}>
-                <div style={{ width: "100%", height: "100vh" }}>
-                    {this.state.initialized && (
-                    <WrappedMap
-                    loggedInUser={this.state.loggedInUser}
-                    interview={this.state.interviews}
-                    googleMapURL=
-                    {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-                    loadingElement={<div style={{ height: "90%" }} />}
-                    containerElement={<div style={{ height: "90%" }} />}
-                    mapElement={<div style={{ height: "90%" }} />}
-                    />)}
+                <div>
+                    <img className="theImage01" src="https://res.cloudinary.com/tworaederdev/image/upload/v1576837112/kandidat/flyingAlone03_zcxfya.png"/>
                 </div>
-                </Col>
 
-                <Col md={7}>
-                    <Row>                    
+                <div>
+                    <img className="theImage02" src='https://res.cloudinary.com/tworaederdev/image/upload/v1576836788/kandidat/flyingAlone01_wf0mlk.png'/>
+                </div>
+
+                <div>
+                    <img className="theImage03" src="https://res.cloudinary.com/tworaederdev/image/upload/v1576836788/kandidat/flyingAlone02_hoj9ly.png"/>
+                </div>
+
+
+                
+
+                <Row className="showCalendar">    
+                    <Col lg={12}>                
                         <Button onClick={this.handleShow}>Ver Calendario</Button>
-                    </Row>
-                    <Row className="cardsList" >
-                            {this.state.interviews.map(interview => <Col md={6}> <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} /></Col>)}                          
-                    </Row>
-                </Col> 
-            </Row>
+                    </Col>
+                </Row>           
+
+                <Row>
+
+                    <Col lg={5}>
+                        <div style={{ width: "100%", height: "68vh" }} className="theMap">
+                            {this.state.initialized && (
+                            <WrappedMap
+                            loggedInUser={this.state.loggedInUser}
+                            interview={this.state.interviews}
+                            googleMapURL=
+                            {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+                            loadingElement={<div style={{ height: "100%" }} />}
+                            containerElement={<div style={{ height: "100%" }} />}
+                            mapElement={<div style={{ height: "100%" }} />}
+                            />)}
+                        </div>
+                    </Col>
+
+                    <Col lg={7}>
+
+                        <Row className="showCalendar">
+
+                            <Col lg={12}>                
+                                <h3>Tus entrevistas</h3>
+                                <p>Es importante tener tus entrevistas bajo control. <br></br>Y, si puedes, llega 5 minutos antes. Los recruiters te lo agradecerá</p>
+                            </Col>
+
+                        </Row>
+                   
+                        <Row className="cardsList" >
+                                {this.state.interviews.map(interview => <Col md={6}> <InterviewCard update={this.updateInterviewsList} delete={this.deleteInterview} key={interview._id} interview={interview} /></Col>)}                          
+                        </Row>
+                    </Col> 
+                </Row>
 
             </Container>
-
-        </section>
             
-            <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
+            <Modal className="calendarModal" show={this.state.showModalWindow} onHide={this.handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Calendario de entrevistas</Modal.Title>
             </Modal.Header>
@@ -111,12 +133,9 @@ class Agenda extends React.Component {
                 <NewCalendar className="calendar" loggedInUser={this.state.loggedInUser} interview={this.state.interviews}/>
             </Modal.Body>
             <Modal.Footer>
-                    <Button onClick={this.handleEditShow}>Editar</Button>
-                    <Button onClick={this.handleClose}>Cerrar</Button>
+                    <Button className="noButton" variant="link" onClick={this.handleClose}>.</Button>
             </Modal.Footer>
             </Modal> 
-
-
 
             </>
         )

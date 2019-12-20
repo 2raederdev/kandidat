@@ -125,8 +125,10 @@ class StatusCol extends React.Component {
             <p>{this.props.title}</p>
             
             <Row className={this.props.className}>
-                <Button variant="danger" onClick={this.handleShow}>Nueva candidatura</Button>
+                <div>
+                <Button className="statusCol" onClick={this.handleShow}>Nueva candidatura</Button>
                     {this.state.applications.map(application => <ApplicationCard delete={this.deleteApplication} key={application._id} {...application} />)}
+                    </div>
             </Row>  
 
 

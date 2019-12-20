@@ -1,11 +1,9 @@
 
 import React, { Component } from "react"
 
-import InterviewService from "../../service/Interview.service"
+import { Container, Form, Button, Col, Row } from 'react-bootstrap'
 
-import { Container, Form, Button } from 'react-bootstrap'
-
-// import Button from './sendMail'
+import './mails.css'
 
 
 class Mail extends Component {
@@ -34,30 +32,47 @@ class Mail extends Component {
         return (
 
             <>
-            <Container>
-                <section>
-                    <h1>Mails</h1>
-                    <p>Comprueba si un email existe</p>
+            <Container className="sendMail-form text-center">
+                <Row>
 
-                    <Form>
+                    <Col sm={12} lg={5}>
+                        <h2>Llega a las personas que quieres</h2>
+                        <p className="p-text">Los recruiters siempre son importantes...</p> 
+                        <p className="p-text">Pero no te olvides de los CTO's y los Tech Leaders!!!</p>
+                        <p className="p-text">Escríbeles un correo y házselo saber!!!</p>
+                        <img src="https://res.cloudinary.com/tworaederdev/image/upload/v1576783038/kandidat/Mail-sent_hy5mux.png" alt="Mailing"/>
+                    </Col>
 
-                        <Form.Group>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control placeholder="Introduce la dirección de correo electrónico" type="text" name="emailAddress" onChange={this.onChangeMail.bind(this)}/>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Asunto</Form.Label>
-                            <Form.Control placeholder="Introduce el asunto de tu correo" type="text" name="emailSubject" onChange={this.onChangeMail.bind(this)}/>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Texto del mensaje</Form.Label>
-                            <Form.Control as="textarea" rows="5" placeholder="Escribe tu correo" type="text" name="emailBody" onChange={this.onChangeMail.bind(this)}/>
-                        </Form.Group>
+                    <Col sm={12} lg={{span:5, offset:1}}>
 
+                        <Form className="text-center">
 
-                        <Button target="_blank" email={this.state.inputEmail} onClick={this.sendMail.bind(this)}>Enviar mail</Button>
-                    </Form>
-                </section>
+                        <h1 >Mails</h1>
+
+                            <Form.Group>
+                                <Form.Label><smail>Dirección</smail></Form.Label>
+                                
+                                    <Form.Control type="text" name="emailAddress" onChange={this.onChangeMail.bind(this)}/>
+                                
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label><smail>Asunto</smail></Form.Label>
+                                
+                                    <Form.Control type="text" name="emailSubject" onChange={this.onChangeMail.bind(this)}/>
+                                
+                            </Form.Group>
+                            <Form.Group >
+                                <Form.Label><smail>Mensaje</smail></Form.Label>
+                                
+                                <Form.Control as="textarea" rows="5" type="text" name="emailBody" onChange={this.onChangeMail.bind(this)}/>
+                                
+                            </Form.Group>
+                            <div className="text-center">
+                                <Button variant="outline-warning" target="_blank" email={this.state.inputEmail} onClick={this.sendMail.bind(this)}>Enviar correo electrónico</Button>
+                            </div>
+                        </Form>
+                    </Col>
+                </Row>
             </Container>
 
             </>
